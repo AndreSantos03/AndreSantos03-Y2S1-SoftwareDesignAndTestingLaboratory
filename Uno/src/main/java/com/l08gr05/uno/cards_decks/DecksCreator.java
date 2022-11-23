@@ -1,16 +1,15 @@
-package com.aor.uno.decklogic;
-
-import com.aor.uno.cards.Card;
+package com.l08gr05.uno.cards_decks;
 
 import java.util.*;
 
-public class DeckCreator {
+public class DecksCreator {
 
-    private Deque<Card> inTableDeck;
-    private Set<Card> playerDeck;
-    private Set<Card> cpuDeck;
+    public Deque<Card> inTableDeck;
+    public Queue<Card> playedDeck;
+    public Set<Card> playerDeck;
+    public Set<Card> cpuDeck;
 
-    public void tableDeckInitializer() {
+    public DecksCreator() {
         List<String> coloredTypeList = Arrays.asList("1","2","3","4","5","6","7","8","9","plustwo","stop","reverse","block");
         List<String> blackTypeList = Arrays.asList("plusfour", "changecolor");
         List<String> colorsList =  Arrays.asList("red", "blue", "yellow", "green");
@@ -34,18 +33,20 @@ public class DeckCreator {
         }
 
         Collections.shuffle(cardList);
-        this.inTableDeck = new ArrayDeque<Card>(cardList);
-    }
+        inTableDeck = new ArrayDeque<Card>(cardList);
+        playedDeck.add(inTableDeck.pollLast());
 
-    public void cpuDeckInitializer(){
-        for(int i = 1; i <= 7; i++){
-            this.cpuDeck.add(this.inTableDeck.pollLast());
-        }
-    }
-    public void playerDeckInitializer(){
-        for(int i = 1; i <= 7; i++){
-            this.playerDeck.add(this.inTableDeck.pollLast());
-        }
+        //Create CPus Deck
+         for(int i = 1; i <= 7; i++){
+                cpuDeck.add(inTableDeck.pollLast());
+                System.out.println();
+            }
+
+         //Create Users Deck
+         for(int i = 1; i <= 7; i++){
+             playerDeck.add(inTableDeck.pollLast());
+         }
+
     }
 
 }

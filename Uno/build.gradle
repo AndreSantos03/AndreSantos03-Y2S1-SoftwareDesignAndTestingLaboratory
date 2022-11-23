@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group 'com.aor.uno'
+group 'com.l08gr05.uno'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -11,7 +11,7 @@ repositories {
 }
 
 application{
-    mainClass.set('com.aor.hero.game.Game')
+    mainClass.set('com.l08gr05.uno.game.Game')
 }
 
 dependencies {
