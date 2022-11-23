@@ -3,15 +3,11 @@ plugins {
     id 'application'
 }
 
-group 'com.l08gr05.uno'
+group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-}
-
-application{
-    mainClass.set('com.l08gr05.uno.game.Game')
 }
 
 dependencies {
@@ -24,3 +20,6 @@ test {
     useJUnitPlatform()
 }
 
+application {
+    mainClass.set('com.l08gr05.uno.game.Game')
+}
