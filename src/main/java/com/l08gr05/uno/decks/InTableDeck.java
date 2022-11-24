@@ -40,13 +40,6 @@ public class InTableDeck {
         return deck.pollLast();
     }
 
-    public Card drawCards(int n){
-        List<Cards> rList = new ArrayList<>();
-        while(n != 0){
-            rList.add(deck.pollLast());
-        }
-        return rList;
-    }
 
     public Card drawFirst(){
         Card card_selected = drawCard();
