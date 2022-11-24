@@ -1,4 +1,4 @@
-package com.l08gr05.uno.models;
+package com.l08gr05.uno.viewer;
 
 public class Position {
     private int x;
@@ -8,4 +8,8 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+    public int getX(){return x;}
+
+    public int getY(){return y;}
 }

@@ -13,8 +13,7 @@ public class Application {
         this.gui = gui;
     }
 
-    public void main(String[] args) throws IOException {
-        LanternaBasics gui = new LanternaBasics(1920, 1080);
+    public void main(String[] args) throws IOException{
         Game game = new Game();
     }
 }

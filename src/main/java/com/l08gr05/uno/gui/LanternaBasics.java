@@ -1,10 +1,14 @@
 package com.l08gr05.uno.gui;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.l08gr05.uno.cards.Card;
+import com.l08gr05.uno.viewer.Position;
 
 import java.io.IOException;
 
@@ -35,4 +39,28 @@ public class LanternaBasics{
         screen.doResizeIfNecessary();
         return screen;
     }
+    public void drawCard(Position position, String text, Card card,Position position) {
+        String color;
+        switch(card.getColor()){
+            case "black":
+                color = "#000000";
+                break;
+            case "red":
+                color = " #fb0000 ";
+                break;
+            case "blue":
+                color =  "#0041ff";
+                break;
+            case "green":
+                color = "#1daf38";
+                break;
+            case "yellow":
+                color = "#fdf500";
+                break;
+        }
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY() + 1, "" + card.getType());
+    }
+
 }
