@@ -1,4 +1,5 @@
 package com.l08gr05.uno;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.l08gr05.uno.gamelogic.Game;
 import com.l08gr05.uno.gui.LanternaBasics;
 
@@ -12,8 +13,8 @@ public class Application {
         this.gui = gui;
     }
 
-    public static void main(String[] args) throws IOException {
-        LanternaBasics gui = new LanternaBasics(50, 50);
+    public void main(String[] args) throws IOException {
+        LanternaBasics gui = new LanternaBasics(1920, 1080);
         Game game = new Game();
     }
 }

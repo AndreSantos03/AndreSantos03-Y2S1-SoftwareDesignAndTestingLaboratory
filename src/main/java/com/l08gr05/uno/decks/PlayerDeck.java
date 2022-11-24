@@ -9,8 +9,8 @@ import java.util.Set;
 public class PlayerDeck {
     private Set<Card> deck;
 
-    public PlayerDeck(){
-        deck = new HashSet<Card>();
+    public PlayerDeck(List<Card> list){
+        deck = new HashSet<Card>(list);
     }
 
     public void add(Card card){
