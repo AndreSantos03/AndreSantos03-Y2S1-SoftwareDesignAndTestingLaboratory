@@ -18,13 +18,13 @@
 
 - **Problem in Context.** We have 3 different types of Decks. The first one is the one that's shuffled and all the cards are drawn from. The second one is the played cards stack and the third one is the one that the players have. We intented to make a class with some main methods and attributes that are then extended for each different type. However, each type of deck has different variables and methods. For example, the let's call it "shuffled" main deck should be a Deque, as we are only interested in taking cards from the ends, there's no need in removing or add cards from the middle for example. That is not the case with the Player Decks, where a List is optimal.
 
-- **The Pattern.** Thus, the option we chose was to make 3 different classes. It was the most optimal solution has now each type of deck can have the most time/space efficient methods for each one.
+- **The Pattern.** Thus, the option we chose was to make 3 different classes. It was the most optimal solution has now each type of deck can have the most time/space efficient methods for each one. A Structure like implementation was considered, although there was not a significant enough ammount of similar methods to be worth consider an interface.
 
 - **Implementation.** As stated before, we're going to have a different class for each type of deck. These will then be linked to the main loop through the class DeckHandler, in which each Deck is created and the various methods are used to created the randomized stacks of cards needed to play the game.
 
 #### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggesitons should be described in its own subsection.
+> The main smell we could notice was when it comes to the main game loop. We are worried we're doing too much GUI in there and in the near future we'll be moving that part into newer classes, as we can see in the UML. For example, we plan to correlate a class such as Card Viewer and have it be called an object in DeckHandler, where all the card decks that must be shown will be located.
 
 **Example of such a subsection**:
 
