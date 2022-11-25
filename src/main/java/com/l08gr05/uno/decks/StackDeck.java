@@ -3,13 +3,18 @@ package com.l08gr05.uno.decks;
 import com.l08gr05.uno.cards.Card;
 
 import java.util.*;
+import java.lang.Object;
 
 public class StackDeck {
-    private Deque<Card> deck;
+    private Stack<Card> deck;
+
+    public Stack<Card> getDeck() {
+        return this.deck;
+    }
 
     public StackDeck(){
-        deck = new ArrayDeque<>();
-        List<String> coloredTypeList = Arrays.asList("1","2","3","4","5","6","7","8","9","plustwo","stop","reverse","block");
+        deck = new Stack<Card>();
+        List<String> coloredTypeList = Arrays.asList("1","2","3","4","5","6","7","8","9","plustwo","reverse","block");
         List<String> blackTypeList = Arrays.asList("plusfour", "changecolor");
         List<String> colorsList =  Arrays.asList("red", "blue", "yellow", "green");
 
@@ -32,11 +37,11 @@ public class StackDeck {
         }
 
         Collections.shuffle(cardList);
-        deck = new ArrayDeque<Card>(cardList);
+        deck.addAll(cardList);
     }
 
     public Card drawCard(){
-        return deck.pollLast();
+        return deck.pop();
     }
 
     public List<Card> drawListCards(int n){
@@ -50,7 +55,7 @@ public class StackDeck {
     public Card drawFirst(){
         Card card_selected = drawCard();
         while(!card_selected.isNumber()){
-            deck.addFirst(card_selected);
+            deck.add(card_selected);
             card_selected = drawCard();
         }
         return card_selected;
