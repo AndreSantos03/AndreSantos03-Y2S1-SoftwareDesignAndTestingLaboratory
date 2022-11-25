@@ -39,28 +39,28 @@ public class LanternaBasics{
         screen.doResizeIfNecessary();
         return screen;
     }
-    public void drawCard(Position position, String text, Card card,Position position) {
-        String color;
-        switch(card.getColor()){
-            case "black":
-                color = "#000000";
-                break;
-            case "red":
-                color = " #fb0000 ";
-                break;
-            case "blue":
-                color =  "#0041ff";
-                break;
-            case "green":
-                color = "#1daf38";
-                break;
-            case "yellow":
-                color = "#fdf500";
-                break;
-        }
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY() + 1, "" + card.getType());
-    }
+//    public void drawCard(Position position, String text, Card card,Position position) {
+//        String color;
+//        switch(card.getColor()){
+//            case "black":
+//                color = "#000000";
+//                break;
+//            case "red":
+//                color = " #fb0000 ";
+//                break;
+//            case "blue":
+//                color =  "#0041ff";
+//                break;
+//            case "green":
+//                color = "#1daf38";
+//                break;
+//            case "yellow":
+//                color = "#fdf500";
+//                break;
+//        }
+//        TextGraphics tg = screen.newTextGraphics();
+//        tg.setForegroundColor(TextColor.Factory.fromString(color));
+//        tg.putString(position.getX(), position.getY() + 1, "" + card.getType());
+//    }
 
 }

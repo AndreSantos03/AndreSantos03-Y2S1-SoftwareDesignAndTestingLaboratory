@@ -1,3 +1,3 @@
 ## LDTS_<08><05> - <Uno>
 
->For this project, we decided to create the famous game of Uno. We are in the battle against the CPU and each player has the ability to create
+>For this project, we decided to create the famous game of Uno. We are in the battle against the CPU where the first one to play all of their cards wins. Each card played must have the same color or numbers as the one thats's on top of stack of played cards or is must be a black color card. There are cards with special abbilities such as Block, Draw 2, Draw 4, Reverse and Change Color.
