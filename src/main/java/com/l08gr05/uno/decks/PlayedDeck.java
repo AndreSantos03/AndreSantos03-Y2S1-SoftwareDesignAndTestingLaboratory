@@ -8,6 +8,10 @@ public class PlayedDeck {
 
     private Queue<Card> deck;
 
+    public Queue<Card> getDeck() {
+        return this.deck;
+    }
+
     public PlayedDeck(Card card){
         deck = new ArrayDeque<>();
         deck.add(card);

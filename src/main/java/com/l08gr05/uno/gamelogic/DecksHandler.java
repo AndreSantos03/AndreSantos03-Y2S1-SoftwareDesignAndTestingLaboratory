@@ -10,6 +10,22 @@ public class DecksHandler {
     private PlayerDeck cpuDeck;
     private StackDeck stackDeck;
 
+    public PlayedDeck getPlayedDeck() {
+        return this.playedDeck;
+    }
+
+    public PlayerDeck getPlayerDeck() {
+        return this.playerDeck;
+    }
+
+    public PlayerDeck getCpuDeck() {
+        return this.cpuDeck;
+    }
+
+    public StackDeck getStackDeck() {
+        return this.stackDeck;
+    }
+
     public DecksHandler(){
 
         //Decks Creation
