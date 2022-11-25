@@ -2,26 +2,23 @@ package com.l08gr05.uno.decks;
 
 import com.l08gr05.uno.cards.Card;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class PlayerDeck {
-    private Set<Card> deck;
+    private List<Card> deck;
 
     public PlayerDeck(List<Card> list){
-        deck = new HashSet<Card>(list);
+        deck = new ArrayList<>(list);
     }
 
     public void add(Card card){
         deck.add(card);
     }
 
-    public boolean remove(Card card){
-        if(deck.contains(card)) {
-            deck.remove(card);
-            return true;
-        }
-        return false;
+    public void remove(Card card){
+        deck.remove(card);
     }
 }
