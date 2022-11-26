@@ -31,7 +31,7 @@ This project was developed by André Santos (up202108658@fe.up.pt), António Ram
 
 > The following image shows the classes' relations and the general implementation logic of the game.
 
-![png](uml.png)
+![png](images/uml.png)
 
 These classes can be found here:
 
@@ -55,11 +55,11 @@ These classes can be found here:
 
 > There are tests on the Stack Deck [here](src/test/java/com/l08gr05/uno/decks/StackDeckTest.java).
 
-![png](test1.png)
+![png](images/test1.png)
 
 > And tests on the Decks Handler [here](src/test/java/com/l08gr05/uno/gamelogic/DecksHandlerTest.java).
 
-![png](test2.png)
+![png](images/test2.png)
 ### SELF-EVALUATION
 
 > All of us worked well for this project and did most of the code in a group call.
