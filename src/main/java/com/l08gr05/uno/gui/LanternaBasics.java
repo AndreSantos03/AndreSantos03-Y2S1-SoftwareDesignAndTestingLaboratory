@@ -40,9 +40,10 @@ public class LanternaBasics{
         return screen;
     }
 
-    public void drawTest(Position position, char c) {
+    public void drawTest(int x, int y) {
         TextGraphics tg = screen.newTextGraphics();
-        tg.putString(position.getX(), position.getY(), "" + c);
+        tg.setForegroundColor(TextColor.Factory.fromString("#fb0000"));
+        tg.putString(x, y, "X");
     }
 //    public void drawCard(Position position, String text, Card card,Position position) {
 //        String color;

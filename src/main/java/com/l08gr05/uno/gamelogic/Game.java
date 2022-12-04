@@ -14,8 +14,7 @@ public class Game{
 
         decksHandler = new DecksHandler();
         gui = new LanternaBasics(70, 25);
-        gui.drawTest(new Position(10, 10), 'A');
-        run();
+        gui.drawTest(0, 0);
     }
 
     public void run(){
