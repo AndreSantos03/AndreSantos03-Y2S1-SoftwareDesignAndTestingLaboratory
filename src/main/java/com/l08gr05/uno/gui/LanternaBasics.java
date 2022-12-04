@@ -39,6 +39,11 @@ public class LanternaBasics{
         screen.doResizeIfNecessary();
         return screen;
     }
+
+    public void drawTest(Position position, char c) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.putString(position.getX(), position.getY(), "" + c);
+    }
 //    public void drawCard(Position position, String text, Card card,Position position) {
 //        String color;
 //        switch(card.getColor()){
