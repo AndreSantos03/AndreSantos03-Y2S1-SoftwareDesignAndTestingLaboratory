@@ -10,6 +10,8 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.l08gr05.uno.cards.Card;
 import com.l08gr05.uno.viewer.Position;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class LanternaBasics{
@@ -40,10 +42,9 @@ public class LanternaBasics{
         return screen;
     }
 
-    public void drawTest(int x, int y) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString("#fb0000"));
-        tg.putString(x, y, "X");
+    public void drawTest(int x, int y) throws IOException {
+        BufferedImage image = ImageIO.read(getClass())
+        screen.refresh();
     }
 //    public void drawCard(Position position, String text, Card card,Position position) {
 //        String color;
