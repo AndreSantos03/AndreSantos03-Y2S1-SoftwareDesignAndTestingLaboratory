@@ -13,7 +13,7 @@ public class Game{
     public Game() throws IOException {
 
         decksHandler = new DecksHandler();
-        gui = new LanternaBasics(70, 25);
+        gui = new LanternaBasics(250, 150);
         gui.drawTest(1, 1);
     }
 
