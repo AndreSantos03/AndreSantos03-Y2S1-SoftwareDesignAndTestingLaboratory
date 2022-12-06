@@ -18,6 +18,7 @@ public class Game{
     private void run() throws Exception{
         while(true){
             gui.run();
+            Thread.sleep(5);
         }
     }
 

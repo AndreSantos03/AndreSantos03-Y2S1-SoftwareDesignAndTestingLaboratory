@@ -31,14 +31,14 @@ public class Gui {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 1);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 2);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
 
     public Gui() throws Exception{
         AWTTerminalFontConfiguration fontConfig = loadFont();
-        TerminalSize terminalSize = new TerminalSize(1920, 1080);
+        TerminalSize terminalSize = new TerminalSize(480, 360);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
@@ -51,9 +51,8 @@ public class Gui {
         screen.doResizeIfNecessary();
     }
 
-    public void drawText(int x, int y, String text, String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
+    public void drawSquare(int x, int y, String text, String color) {
+        tg.setBackgroundColor(TextColor.Factory.fromString(color));
         tg.putString(x, y, text);
     }
 
@@ -61,25 +60,22 @@ public class Gui {
 
     public void run() throws IOException {
         screen.clear();
-        for(int x = 0; x<= 100;x++){
-            for(int y = 0; y<=100;y++) {
-                drawText(0,0,"X", "#FF0000");
-            }
-        }
+        drawImage(0,0, "JosePNGBaby.png");
         screen.refresh();
     }
 
-    private BufferedImage scaleImage(BufferedImage src, int w, int h){
+    private BufferedImage scaleImage(BufferedImage src, double scale){
+        int w = (int) (src.getWidth() * scale);
+        int h = (int) (src.getHeight() * scale);
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        int x, y;
         int ww = src.getWidth();
         int hh = src.getHeight();
         int[] ys = new int[h];
-        for (y = 0; y < h; y++)
+        for (int y = 0; y < h; y++)
             ys[y] = y * hh / h;
-        for (x = 0; x < w; x++) {
+        for (int x = 0; x < w; x++) {
             int newX = x * ww / w;
-            for (y = 0; y < h; y++) {
+            for (int y = 0; y < h; y++) {
                 int col = src.getRGB(newX, ys[y]);
                 img.setRGB(x, y, col);
             }
@@ -87,14 +83,17 @@ public class Gui {
         return img;
     }
 
-    public void drawImage() throws IOException {
-        BufferedImage image = ImageIO.read(getClass().getResource("JosePNGBaby.png"));
-//        image = scaleImage(image,70,70)
-        for (int x = 0; x < image.getWidth(); x++) {
-            for(int y = 0; y < image.getHeight();y++) {
-                Color c = new Color(image.getRGB(x, y));
+    public void drawImage(int x, int y, String imageName) throws IOException {
+        String resName = '/' + imageName;
+        BufferedImage image = ImageIO.read(getClass().getResource(resName));
+        image = scaleImage(image,0.2);
+        for (int xx = 0; xx < image.getWidth(); xx++) {
+            for(int yy = 0; yy < image.getHeight();yy++) {
+                Color c = new Color(image.getRGB(xx, yy));
                 String color = "#" + Integer.toHexString(c.getRGB()).substring(2);
-                drawText(x,y," ",color);
+                System.out.println("x: " + (int)(xx + x));
+                System.out.println("y: " + (int)(yy + y));
+                drawSquare(xx + x,yy + y," ",color );
             }
         }
     }
