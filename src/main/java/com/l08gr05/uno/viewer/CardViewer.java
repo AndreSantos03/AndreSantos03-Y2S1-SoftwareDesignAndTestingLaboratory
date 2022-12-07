@@ -1,8 +1,6 @@
 package com.l08gr05.uno.viewer;
 
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.l08gr05.uno.cards.Card;
+import com.l08gr05.uno.decks_cards.Card;
 
 public class CardViewer {
 

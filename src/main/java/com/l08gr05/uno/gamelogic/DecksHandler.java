@@ -1,10 +1,7 @@
 package com.l08gr05.uno.gamelogic;
 
-import com.l08gr05.uno.decks.Deck;
-import com.l08gr05.uno.decks.StackDeck;
-
-import java.util.Arrays;
-import java.util.List;
+import com.l08gr05.uno.decks_cards.Deck;
+import com.l08gr05.uno.decks_cards.StackDeck;
 
 public class DecksHandler {
     private Deck playedDeck;

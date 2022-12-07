@@ -1,4 +1,4 @@
-package com.l08gr05.uno.decks;
+package com.l08gr05.uno.decks_cards;
 
 import com.l08gr05.uno.cards.Card;
 import org.junit.jupiter.api.BeforeEach;

@@ -22,8 +22,7 @@ public class Gui {
     private TextGraphics tg;
 
 
-    private AWTTerminalFontConfiguration loadFont() throws Exception
-    {
+    private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -36,7 +35,7 @@ public class Gui {
         return fontConfig;
     }
 
-    public Gui() throws Exception{
+    public Gui() throws Exception {
         AWTTerminalFontConfiguration fontConfig = loadFont();
         TerminalSize terminalSize = new TerminalSize(480, 360);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -51,20 +50,17 @@ public class Gui {
         screen.doResizeIfNecessary();
     }
 
-    public void drawSquare(int x, int y, String text, String color) {
+    public void run() throws IOException {
+        screen.clear();
+        screen.refresh();
+    }
+
+    public void drawPixel(int x, int y, String text, String color) {
         tg.setBackgroundColor(TextColor.Factory.fromString(color));
         tg.putString(x, y, text);
     }
 
-
-
-    public void run() throws IOException {
-        screen.clear();
-        drawImage(0,0, "JosePNGBaby.png");
-        screen.refresh();
-    }
-
-    private BufferedImage scaleImage(BufferedImage src, double scale){
+    private BufferedImage scaleImage(BufferedImage src, double scale) {
         int w = (int) (src.getWidth() * scale);
         int h = (int) (src.getHeight() * scale);
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
@@ -86,17 +82,16 @@ public class Gui {
     public void drawImage(int x, int y, String imageName) throws IOException {
         String resName = '/' + imageName;
         BufferedImage image = ImageIO.read(getClass().getResource(resName));
-        image = scaleImage(image,0.2);
+        image = scaleImage(image, 0.2);
         for (int xx = 0; xx < image.getWidth(); xx++) {
-            for(int yy = 0; yy < image.getHeight();yy++) {
+            for (int yy = 0; yy < image.getHeight(); yy++) {
                 Color c = new Color(image.getRGB(xx, yy));
                 String color = "#" + Integer.toHexString(c.getRGB()).substring(2);
-                System.out.println("x: " + (int)(xx + x));
-                System.out.println("y: " + (int)(yy + y));
-                drawSquare(xx + x,yy + y," ",color );
+                drawPixel(xx + x, yy + y, " ", color);
             }
         }
     }
+
 
 //    public void drawCard(Position position, String text, Card card,Position position) {
 //        String color;
@@ -121,5 +116,4 @@ public class Gui {
 //        tg.setForegroundColor(TextColor.Factory.fromString(color));
 //        tg.putString(position.getX(), position.getY() + 1, "" + card.getType());
 //    }
-
 }

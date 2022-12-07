@@ -1,6 +1,4 @@
-package com.l08gr05.uno.decks;
-
-import com.l08gr05.uno.cards.Card;
+package com.l08gr05.uno.decks_cards;
 
 import java.util.ArrayList;
 import java.util.List;
