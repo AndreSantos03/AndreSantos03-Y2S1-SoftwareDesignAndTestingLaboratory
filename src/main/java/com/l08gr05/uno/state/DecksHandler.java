@@ -1,4 +1,4 @@
-package com.l08gr05.uno.gamelogic;
+package com.l08gr05.uno.state;
 
 import com.l08gr05.uno.decks_cards.Deck;
 import com.l08gr05.uno.decks_cards.StackDeck;
@@ -27,12 +27,10 @@ public class DecksHandler {
 
 
     public DecksHandler(){
-
         //Decks Creation
         stackDeck = new StackDeck();
         playedDeck = new Deck(stackDeck.drawTop(7));
         playerDeck = new Deck(stackDeck.drawTop(7));
         cpuDeck = new Deck(stackDeck.drawTop(7));
-    }
 
 }

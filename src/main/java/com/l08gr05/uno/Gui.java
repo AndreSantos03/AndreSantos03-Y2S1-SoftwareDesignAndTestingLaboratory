@@ -1,4 +1,4 @@
-package com.l08gr05.uno.gui;
+package com.l08gr05.uno;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -50,10 +50,9 @@ public class Gui {
         screen.doResizeIfNecessary();
     }
 
-    public void run() throws IOException {
-        screen.clear();
-        screen.refresh();
-    }
+    public void refresh() throws IOException {screen.refresh();}
+    public void clear(){screen.clear();}
+    public void close() throws IOException {screen.close();}
 
     public void drawPixel(int x, int y, String text, String color) {
         tg.setBackgroundColor(TextColor.Factory.fromString(color));
