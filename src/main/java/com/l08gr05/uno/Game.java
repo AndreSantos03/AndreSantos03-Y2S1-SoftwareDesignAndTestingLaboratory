@@ -14,10 +14,11 @@ public class Game{
     }
 
     private void run() throws Exception{
-        while(true){
+        while(gui.get_run()){
             state.step(gui);
             Thread.sleep(5);
         }
+        gui.close();
     }
 
 

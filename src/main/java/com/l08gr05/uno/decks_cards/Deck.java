@@ -40,7 +40,7 @@ public class Deck {
     }
 
 
-    public List<Card> getDeck(){
+    public List<Card> get_deckList(){
         return deckList;
     }
 }

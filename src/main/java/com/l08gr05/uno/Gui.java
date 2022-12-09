@@ -7,20 +7,27 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Gui {
 
     private Terminal terminal;
     private Screen screen;
     private TextGraphics tg;
-
+    private Set<Character> pressedKeys = new HashSet<>();
+    private boolean run = true;
 
     private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
@@ -48,6 +55,28 @@ public class Gui {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
+
+        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                pressedKeys.add(e.getKeyChar());
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    run = false;
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e)
+            {
+                pressedKeys.remove(e.getKeyChar());
+            }
+        });
+    }
+
+    public boolean get_run(){
+        return run;
     }
 
     public void refresh() throws IOException {screen.refresh();}
@@ -79,7 +108,7 @@ public class Gui {
     }
 
     public void drawImage(int x, int y, String imageName) throws IOException {
-        String resName = '/' + imageName;
+        String resName = "/Cards/" + imageName;
         BufferedImage image = ImageIO.read(getClass().getResource(resName));
         image = scaleImage(image, 0.2);
         for (int xx = 0; xx < image.getWidth(); xx++) {
@@ -91,8 +120,11 @@ public class Gui {
         }
     }
 
+    public Set<Character> getPressedKeys() {
+        return pressedKeys;
+    }
 
-//    public void drawCard(Position position, String text, Card card,Position position) {
+    //    public void drawCard(Position position, String text, Card card,Position position) {
 //        String color;
 //        switch(card.getColor()){
 //            case "black":

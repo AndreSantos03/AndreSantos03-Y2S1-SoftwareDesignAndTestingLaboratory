@@ -15,15 +15,15 @@ public class Card{
         this.color = color;
         this.type = type;
         pngName = type + color.charAt(0) + ".png";
-        System.out.println(pngName);
    }
-    public String getType(){
+    public String get_type(){
         return this.type;
     };
 
-    public String getColor(){
+    public String get_color(){
         return this.color;
     };
+    public String get_pngName(){return pngName;}
 
     public Boolean isNumber(){
         return Arrays.asList("00","01","02","03","04","05","06","07","08","09").contains(type);
