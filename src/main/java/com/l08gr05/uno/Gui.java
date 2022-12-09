@@ -24,6 +24,8 @@ import java.util.Set;
 public class Gui {
 
     private Terminal terminal;
+    private int terminalWidth;
+    private int terminalHeight;
     private Screen screen;
     private TextGraphics tg;
     private Set<Character> pressedKeys = new HashSet<>();
@@ -37,14 +39,18 @@ public class Gui {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 2);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 3);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
 
     public Gui() throws Exception {
+        terminalHeight = 270;
+        terminalWidth = 480;
+
+
         AWTTerminalFontConfiguration fontConfig = loadFont();
-        TerminalSize terminalSize = new TerminalSize(480, 360);
+        TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
@@ -56,32 +62,37 @@ public class Gui {
         screen.startScreen();
         screen.doResizeIfNecessary();
 
-        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter()
-        {
+        ((AWTTerminalFrame) terminal).getComponent(0).addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e)
-            {
+            public void keyPressed(KeyEvent e) {
                 pressedKeys.add(e.getKeyChar());
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-                {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     run = false;
                 }
             }
+
             @Override
-            public void keyReleased(KeyEvent e)
-            {
+            public void keyReleased(KeyEvent e) {
                 pressedKeys.remove(e.getKeyChar());
             }
         });
     }
 
-    public boolean get_run(){
+    public boolean get_run() {
         return run;
     }
 
-    public void refresh() throws IOException {screen.refresh();}
-    public void clear(){screen.clear();}
-    public void close() throws IOException {screen.close();}
+    public void refresh() throws IOException {
+        screen.refresh();
+    }
+
+    public void clear() {
+        screen.clear();
+    }
+
+    public void close() throws IOException {
+        screen.close();
+    }
 
     public void drawPixel(int x, int y, String text, String color) {
         tg.setBackgroundColor(TextColor.Factory.fromString(color));
@@ -109,9 +120,8 @@ public class Gui {
 
     public void drawImage(int x, int y, String imageName) throws IOException {
         String resName = "/Cards/" + imageName;
-        System.out.println(resName);
         BufferedImage image = ImageIO.read(getClass().getResource(resName));
-        image = scaleImage(image, 0.2);
+        image = scaleImage(image, 0.023);
         for (int xx = 0; xx < image.getWidth(); xx++) {
             for (int yy = 0; yy < image.getHeight(); yy++) {
                 Color c = new Color(image.getRGB(xx, yy));
@@ -125,27 +135,11 @@ public class Gui {
         return pressedKeys;
     }
 
-    //    public void drawCard(Position position, String text, Card card,Position position) {
-//        String color;
-//        switch(card.getColor()){
-//            case "black":
-//                color = "#000000";
-//                break;
-//            case "red":
-//                color = " #fb0000 ";
-//                break;
-//            case "blue":
-//                color =  "#0041ff";
-//                break;
-//            case "green":
-//                color = "#1daf38";
-//                break;
-//            case "yellow":
-//                color = "#fdf500";
-//                break;
-//        }
-//        TextGraphics tg = screen.newTextGraphics();
-//        tg.setForegroundColor(TextColor.Factory.fromString(color));
-//        tg.putString(position.getX(), position.getY() + 1, "" + card.getType());
-//    }
+    public int get_terminalWidth() {
+        return terminalWidth;
+    }
+
+    public int get_terminalHeight() {
+        return terminalHeight;
+    }
 }
