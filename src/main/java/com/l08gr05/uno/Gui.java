@@ -109,6 +109,7 @@ public class Gui {
 
     public void drawImage(int x, int y, String imageName) throws IOException {
         String resName = "/Cards/" + imageName;
+        System.out.println(resName);
         BufferedImage image = ImageIO.read(getClass().getResource(resName));
         image = scaleImage(image, 0.2);
         for (int xx = 0; xx < image.getWidth(); xx++) {

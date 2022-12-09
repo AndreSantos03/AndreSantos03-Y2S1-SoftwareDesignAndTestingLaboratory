@@ -9,7 +9,7 @@ public class Card{
     private String pngName;
 
     public Card(String type){
-        this("black",type);
+        this("dark",type);
     }
     public Card(String color, String type){
         this.color = color;
