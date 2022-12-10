@@ -25,7 +25,9 @@ public class Deck {
             deckList.add(0,card);
         }
     }
-
+    public Card getTop(){
+        return deckList.get(deckList.size() - 1);
+    }
     public Card drawTop(){
         Card drawnCard = deckList.get(deckList.size() - 1) ;
         deckList.remove(drawnCard);
@@ -39,8 +41,12 @@ public class Deck {
         return rList;
     }
 
+    public int size(){
+        return deckList.size();
+    }
 
     public List<Card> get_deckList(){
         return deckList;
     }
+
 }

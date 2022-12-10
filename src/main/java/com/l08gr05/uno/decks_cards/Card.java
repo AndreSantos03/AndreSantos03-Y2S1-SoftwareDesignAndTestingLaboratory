@@ -14,6 +14,7 @@ public class Card{
     private BufferedImage image;
     private static int cardHeight;
     private static int cardWidth;
+    private static BufferedImage backImage;
 
     public Card(String type) throws IOException {
         this("dark",type);
@@ -43,6 +44,22 @@ public class Card{
         }
         return img;
     }
+    private static BufferedImage scaleStaticImage(BufferedImage src, int w,int h) {
+        BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (int y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (int x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (int y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
    public BufferedImage get_image(){
         return image;
    }
@@ -57,10 +74,23 @@ public class Card{
     public Boolean isNumber(){
         return Arrays.asList("00","01","02","03","04","05","06","07","08","09").contains(type);
     }
-    public static void setWidthHeight(int w,int h){
+    public static void setWidthHeight(int w,int h) throws IOException {
         cardWidth = w;
         cardHeight = h;
-        System.out.println("Width: " + w);
-        System.out.println("Height: " + h);
+        setBackCard();
     }
+    public static int getWidth(){
+        return cardWidth;
+  }
+    public static int getHeight(){
+        return cardHeight;
+    }
+    private static void setBackCard() throws IOException {
+        backImage = ImageIO.read(Card.class.getResource("/Cards/back.png"));
+        backImage = scaleStaticImage(backImage,Card.getWidth(), Card.getHeight());
+    }
+    public static BufferedImage getBackImage(){
+        return backImage;
+    }
+
 }

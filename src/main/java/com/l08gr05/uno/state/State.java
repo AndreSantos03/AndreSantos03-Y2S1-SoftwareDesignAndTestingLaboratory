@@ -25,6 +25,6 @@ public class State{
     }
 
     public void step(Gui gui) throws Exception {
-        viewer.step(gui, playerDeck);
+        viewer.step(gui, playerDeck, cpuDeck.size(),playedDeck.getTop());
     }
 }
