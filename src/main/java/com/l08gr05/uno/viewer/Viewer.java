@@ -19,5 +19,4 @@ public class Viewer {
         deckViewer.drawTop(gui,topCardImg);
         gui.refresh();
     }
-
 }

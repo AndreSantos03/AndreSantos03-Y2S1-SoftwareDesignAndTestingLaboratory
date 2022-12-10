@@ -1,4 +1,5 @@
 package com.l08gr05.uno;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -64,6 +65,7 @@ public class Gui {
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         terminal = terminalFactory.createTerminal();
+        terminal.setBackgroundColor(TextColor.ANSI.RED);
 
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
