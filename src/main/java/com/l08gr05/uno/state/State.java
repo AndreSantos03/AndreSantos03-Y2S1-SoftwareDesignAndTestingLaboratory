@@ -19,12 +19,12 @@ public class State{
         viewer = new Viewer();
 
         stackDeck = new StackDeck();
-        playedDeck = new Deck(stackDeck.drawTop(7));
+        playedDeck = new Deck(stackDeck.drawFirst());
         playerDeck = new Deck(stackDeck.drawTop(7));
         cpuDeck = new Deck(stackDeck.drawTop(7));
     }
 
     public void step(Gui gui) throws Exception {
-        viewer.step(gui, playerDeck, cpuDeck.size(),playedDeck.getTop());
+        viewer.step(gui, playerDeck, cpuDeck.size(),playedDeck.getTop().get_image());
     }
 }

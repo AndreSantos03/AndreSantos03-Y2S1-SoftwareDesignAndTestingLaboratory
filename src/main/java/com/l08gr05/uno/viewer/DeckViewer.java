@@ -30,4 +30,7 @@ public class DeckViewer {
             x += xInc;
         }
     }
+    public void drawTop(Gui gui, BufferedImage img) throws IOException {
+        gui.drawImage(gui.get_terminalWidth()/2 - Card.getWidth()/2, gui.get_terminalHeight()/2 - Card.getHeight()/2,img);
+    }
 }

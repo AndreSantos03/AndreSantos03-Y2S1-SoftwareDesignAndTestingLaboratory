@@ -1,6 +1,10 @@
 package com.l08gr05.uno.decks_cards;
 
+import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class Deck {
@@ -12,6 +16,7 @@ public class Deck {
     public Deck(List<Card> cardList){
         deckList = new ArrayList<>(cardList);
     }
+    public Deck(Card card){deckList = Arrays.asList(card);}
 
     public void addCard(Card addedCard){
         deckList.add(addedCard);
@@ -40,7 +45,14 @@ public class Deck {
         }
         return rList;
     }
-
+    public Card drawFirst(){
+        for(int i = 0;i<=deckList.size();i++){
+            if(deckList.get(i).isNumber()){
+                return deckList.remove(i);
+            }
+        }
+        return null;
+    }
     public int size(){
         return deckList.size();
     }
