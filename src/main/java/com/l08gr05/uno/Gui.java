@@ -30,6 +30,9 @@ public class Gui {
     private TextGraphics tg;
     private Set<Character> pressedKeys = new HashSet<>();
     private boolean run = true;
+    private int fontSize = 2;
+    private int cardWidth;
+    private int cardHeight;
 
     private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
@@ -39,15 +42,19 @@ public class Gui {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 3);
+        Font loadedFont = font.deriveFont(Font.PLAIN, fontSize);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
 
     public Gui() throws Exception {
-        terminalHeight = 270;
-        terminalWidth = 480;
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        terminalHeight = (int)screenSize.getHeight() / fontSize;
+        terminalWidth = (int)terminalHeight*16/9;
+
+        cardWidth = terminalWidth/15;
+        cardHeight = (int) (0.6684 * cardWidth);//to mantain proportions
 
         AWTTerminalFontConfiguration fontConfig = loadFont();
         TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
@@ -99,9 +106,7 @@ public class Gui {
         tg.putString(x, y, text);
     }
 
-    private BufferedImage scaleImage(BufferedImage src, double scale) {
-        int w = (int) (src.getWidth() * scale);
-        int h = (int) (src.getHeight() * scale);
+    private BufferedImage scaleImage(BufferedImage src, int w,int h) {
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         int ww = src.getWidth();
         int hh = src.getHeight();
@@ -121,7 +126,7 @@ public class Gui {
     public void drawImage(int x, int y, String imageName) throws IOException {
         String resName = "/Cards/" + imageName;
         BufferedImage image = ImageIO.read(getClass().getResource(resName));
-        image = scaleImage(image, 0.023);
+        image = scaleImage(image,cardHeight, cardWidth);
         for (int xx = 0; xx < image.getWidth(); xx++) {
             for (int yy = 0; yy < image.getHeight(); yy++) {
                 Color c = new Color(image.getRGB(xx, yy));
@@ -142,4 +147,7 @@ public class Gui {
     public int get_terminalHeight() {
         return terminalHeight;
     }
+
+    public int get_cardHeight(){return cardHeight;}
+    public int get_cardWidth(){return cardWidth;}
 }
