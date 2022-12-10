@@ -14,7 +14,7 @@ public class DeckViewer {
         int y = gui.get_terminalHeight() * 3/4;
         int xInc = gui.get_terminalWidth() * 10 / 12 / deckList.size();
         for(Card card : deckList){
-            gui.drawImage(x,y,card.get_pngName());
+            gui.drawImage(x,y,card.get_image());
             x += xInc;
         }
     }

@@ -5,6 +5,8 @@ import com.l08gr05.uno.decks_cards.Deck;
 import com.l08gr05.uno.decks_cards.StackDeck;
 import com.l08gr05.uno.viewer.Viewer;
 
+import java.io.IOException;
+
 public class State{
     private Viewer viewer;
     private Deck playedDeck;
@@ -13,7 +15,7 @@ public class State{
     private Deck stackDeck;
 
 
-    public State(){
+    public State() throws IOException {
         viewer = new Viewer();
 
         stackDeck = new StackDeck();

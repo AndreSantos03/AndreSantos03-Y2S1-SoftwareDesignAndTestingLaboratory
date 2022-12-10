@@ -8,8 +8,8 @@ public class Game{
 
 
     public Game() throws Exception {
-        state = new State();
         gui = new Gui();
+        state = new State();
         run();
     }
 

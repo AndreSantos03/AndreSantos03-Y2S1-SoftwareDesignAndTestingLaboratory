@@ -1,3 +1,4 @@
+/*
 package com.l08gr05.uno.gamelogic;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,3 +23,4 @@ public class DecksHandlerTest {
         assertEquals(7, dh.getCpuDeck().getDeck().size());
     }
 }
+*/
