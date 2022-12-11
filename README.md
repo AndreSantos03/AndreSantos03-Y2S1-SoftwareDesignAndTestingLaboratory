@@ -41,7 +41,7 @@ These classes can be found here:
 - [PlayerDeck](src/main/java/com/l08gr05/uno/decks_cards/PlayerDeck.java)
 - [StackDeck](src/main/java/com/l08gr05/uno/decks_cards/StackDeck.java)
 - [com.l08gr05.uno.controller.DecksHandler](src/main/java/com/l08gr05/uno/gamelogic/com.l08gr05.uno.controller.DecksHandler.java)
-- [com.l08gr05.uno.Game](src/main/java/com/l08gr05/uno/gamelogic/com.l08gr05.uno.Game.java)
+- [com.l08gr05.uno.Application](src/main/java/com/l08gr05/uno/gamelogic/com.l08gr05.uno.Application.java)
 - [LanternaBasics](src/main/java/com/l08gr05/uno/gui/LanternaBasics.java)
 - [CardViewer](src/main/java/com/l08gr05/uno/viewer/CardViewer.java)
 - [Position](src/main/java/com/l08gr05/uno/viewer/Position.java)

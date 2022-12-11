@@ -1,34 +1,28 @@
 package com.l08gr05.uno.state;
 
-import com.l08gr05.uno.Gui;
+import com.l08gr05.uno.GUI;
 import com.l08gr05.uno.controller.Controller;
-import com.l08gr05.uno.decks_cards.Deck;
-import com.l08gr05.uno.decks_cards.StackDeck;
 import com.l08gr05.uno.viewer.Viewer;
 
-import java.io.IOException;
+public abstract class State<T>{
+    private final T model;
+    private final Controller<T> controller;
+    private final Viewer<T> viewer;
 
-public class State{
-    private Viewer viewer;
-    private Controller controller;
-    private Deck playedDeck;
-    private Deck playerDeck;
-    private Deck cpuDeck;
-    private Deck stackDeck;
-
-
-    public State() throws IOException {
-        viewer = new Viewer();
-
-        stackDeck = new StackDeck();
-        playedDeck = new Deck(stackDeck.drawFirst());
-        playerDeck = new Deck(stackDeck.drawTop(7));
-        cpuDeck = new Deck(stackDeck.drawTop(7));
+    public  State(T model)  {
+        this.model = model;
+        this.viewer = getViewer();
+        this.controller = getController();
     }
 
-    public void step(Gui gui) throws Exception {
-        // controller.step()
-        viewer.step(gui, playerDeck, cpuDeck.size(),playedDeck.getTop().get_image());
+    protected abstract Viewer<T> getViewer();
+    protected abstract Controller<T> getController();
+
+    public T getModel(){return model;}
+
+    public void step(GUI gui) throws Exception {
+        controller.step();
+        viewer.draw(gui);
     }
 
 }

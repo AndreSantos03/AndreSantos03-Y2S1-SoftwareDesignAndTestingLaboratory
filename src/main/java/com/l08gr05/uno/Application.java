@@ -1,13 +1,29 @@
 package com.l08gr05.uno;
+import com.l08gr05.uno.Game.Game;
+import com.l08gr05.uno.state.GameState;
+import com.l08gr05.uno.state.State;
 
 public class Application {
 
-    public static void  main(String[] args) {
+    private GUI gui;
+    private State state;
+
+    public Application() throws Exception {
+        this.gui = new GUI();
+        this.state = new GameState(new Game());
+    }
+
+    public static void main(String[] args) throws Exception {
+        new Application().start();
+    }
+
+    private void start() throws Exception {
         try {
-            Game game = new Game();
-        }
-        catch (Exception e)
-        {
+            while (this.state != null) {
+                state.step(gui);
+            }
+            gui.close();
+        } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());
             e.printStackTrace();
         }

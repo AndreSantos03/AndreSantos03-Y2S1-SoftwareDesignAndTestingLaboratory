@@ -1,29 +1,24 @@
 package com.l08gr05.uno;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l08gr05.uno.decks_cards.Card;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Gui {
+public class GUI {
 
     private Terminal terminal;
     private int terminalWidth;
@@ -35,6 +30,7 @@ public class Gui {
     private int fontSize = 2;
     private int cardWidth;
     private int cardHeight;
+    private KeyStroke keyStroke;
 
     private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
@@ -49,7 +45,7 @@ public class Gui {
         return fontConfig;
     }
 
-    public Gui() throws Exception {
+    public GUI() throws Exception {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         terminalHeight = (int)screenSize.getHeight() / fontSize;
@@ -72,27 +68,14 @@ public class Gui {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
-
-        ((AWTTerminalFrame) terminal).getComponent(0).addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                pressedKeys.add(e.getKeyChar());
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    run = false;
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                pressedKeys.remove(e.getKeyChar());
-            }
-        });
     }
 
     public boolean get_run() {
         return run;
     }
-
+    public void set_run(boolean run){
+        this.run = run;
+    }
     public void refresh() throws IOException {
         screen.refresh();
     }
@@ -110,6 +93,10 @@ public class Gui {
         tg.putString(x, y, text);
     }
 
+    public KeyStroke get_keystroke() throws IOException {
+        keyStroke = screen.pollInput();
+        return keyStroke;
+    };
 
     public void drawImage(int x, int y, BufferedImage image) throws IOException {
         for (int xx = 0; xx < image.getWidth(); xx++) {
@@ -121,7 +108,7 @@ public class Gui {
         }
     }
 
-    public Set<Character> getPressedKeys() {
+    public Set<Character> get_pressedKeys() {
         return pressedKeys;
     }
 

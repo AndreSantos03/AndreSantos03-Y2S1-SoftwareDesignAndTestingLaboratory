@@ -1,10 +1,15 @@
 package com.l08gr05.uno.controller;
 
-import com.l08gr05.uno.decks_cards.Deck;
+public abstract class Controller<T> {
+    private final T model;
 
-public class Controller {
-    private DecksController decksController;
-    public Controller(){
-        decksController = new DecksController();
+    public Controller(T model) {
+        this.model = model;
     }
+
+    public T getModel() {
+        return model;
+    }
+
+    public abstract void step() ;
 }

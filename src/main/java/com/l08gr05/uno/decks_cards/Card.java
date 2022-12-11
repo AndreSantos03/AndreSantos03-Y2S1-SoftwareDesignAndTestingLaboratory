@@ -1,7 +1,5 @@
 package com.l08gr05.uno.decks_cards;
 
-import com.l08gr05.uno.Gui;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
