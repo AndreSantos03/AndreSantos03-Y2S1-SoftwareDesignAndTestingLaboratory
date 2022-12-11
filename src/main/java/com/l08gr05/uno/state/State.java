@@ -24,7 +24,9 @@ public abstract class State<T>{
 
     public void step(Application application,GUI gui) throws Exception {
         KeyStroke keyStroke = gui.get_keystroke();
-        controller.step(application,keyStroke);
+        if(keyStroke != null){
+            controller.step(application,keyStroke.getKeyType());
+        }
         viewer.draw(gui);
     }
 

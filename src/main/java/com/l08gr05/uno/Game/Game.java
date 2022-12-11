@@ -28,6 +28,11 @@ public class Game {
     public Deck get_cpuDeck(){
         return cpuDeck;
     }
+
+    public Deck get_playedDeck() {
+        return playedDeck;
+    }
+
     public Card get_topCard(){
         return playerDeck.getTop();
     }
