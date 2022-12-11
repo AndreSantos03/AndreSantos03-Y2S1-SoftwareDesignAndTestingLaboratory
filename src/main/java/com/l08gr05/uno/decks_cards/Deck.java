@@ -1,10 +1,7 @@
 package com.l08gr05.uno.decks_cards;
 
-import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class Deck {
@@ -16,12 +13,12 @@ public class Deck {
     public Deck(List<Card> cardList){
         deckList = new ArrayList<>(cardList);
     }
-    public Deck(Card card){deckList = Arrays.asList(card);}
+    public Deck(Card card){deckList = new ArrayList<>(Arrays.asList(card));}
 
-    public void addCard(Card addedCard){
+    public void addTop(Card addedCard){
         deckList.add(addedCard);
     }
-    public void addCards(List<Card> addedListCards){
+    public void addTop(List<Card> addedListCards){
         deckList.addAll(addedListCards);
     }
     //to be used for when restacking
@@ -29,6 +26,9 @@ public class Deck {
         for(Card card:listCards){
             deckList.add(0,card);
         }
+    }
+    public Card remove(int index){
+        return deckList.remove(index);
     }
     public Card getTop(){
         return deckList.get(deckList.size() - 1);

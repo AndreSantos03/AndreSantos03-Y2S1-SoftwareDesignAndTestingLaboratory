@@ -5,6 +5,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.controller.Controller;
+import com.l08gr05.uno.decks_cards.Card;
 import com.l08gr05.uno.decks_cards.Deck;
 
 public class GameController extends Controller {
@@ -28,15 +29,28 @@ public class GameController extends Controller {
             application.setState(null);
         }
         if(keyStrokeType == KeyType.ArrowRight && indexSelected != playerDeck.size() ){
-            playerDeck.get_deckList().get(indexSelected).setIsSelected(false);
+            getIndexCard().setIsSelected(false);
             indexSelected++;
-            playerDeck.get_deckList().get(indexSelected).setIsSelected(true);
+            getIndexCard().setIsSelected(true);
         }
         else if(keyStrokeType==KeyType.ArrowLeft && indexSelected != 0){
-            playerDeck.get_deckList().get(indexSelected).setIsSelected(false);
+            getIndexCard().setIsSelected(false);
             indexSelected--;
-            playerDeck.get_deckList().get(indexSelected).setIsSelected(true);
+            getIndexCard().setIsSelected(true);
         }
-        else if(keyStrokeType ) 
+        else if(keyStrokeType == KeyType.Enter){
+            playerPlayCard();
+        }
+    }
+    private void playerPlayCard(){
+        getIndexCard().setIsSelected(false);
+        playedDeck.addTop(playerDeck.remove(indexSelected));
+        playerDeck.remove(indexSelected);
+        indexSelected = 0;
+        getIndexCard().setIsSelected(true);
+    }
+
+    private Card getIndexCard(){
+        return playerDeck.get_deckList().get(indexSelected);
     }
 }
