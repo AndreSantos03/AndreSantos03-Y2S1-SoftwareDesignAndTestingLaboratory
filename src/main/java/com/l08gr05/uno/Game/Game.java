@@ -26,7 +26,7 @@ public class Game {
         return playerDeck;
     }
     public Deck get_cpuDeck(){
-        return get_cpuDeck();
+        return cpuDeck;
     }
     public Card get_topCard(){
         return playerDeck.getTop();
