@@ -45,16 +45,18 @@ public class GUI {
         return fontConfig;
     }
 
-    public GUI() throws Exception {
-
+    // The following 3 methods are used to initialize the GUI.
+    private void setDimensions() throws IOException {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         terminalHeight = (int)screenSize.getHeight() / fontSize;
         terminalWidth = (int)terminalHeight*16/9;
 
         cardWidth = terminalWidth/14;
-        cardHeight = (int) (0.6684 * cardWidth);//to mantain proportions
+        cardHeight = (int) (0.6684 * cardWidth); //to mantain proportions
         Card.setWidthHeight(cardWidth,cardHeight);
+    }
 
+    private void setTerminal() throws Exception {
         AWTTerminalFontConfiguration fontConfig = loadFont();
         TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -62,12 +64,20 @@ public class GUI {
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         terminal = terminalFactory.createTerminal();
         terminal.setBackgroundColor(TextColor.ANSI.RED);
+    }
 
+    private void setScreen() throws IOException {
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
+    }
+
+    public GUI() throws Exception {
+        setDimensions();
+        setTerminal();
+        setScreen();
     }
 
     public boolean get_run() {

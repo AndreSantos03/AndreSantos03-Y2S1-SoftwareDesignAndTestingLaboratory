@@ -37,6 +37,5 @@ public class GameController extends Controller {
             indexSelected--;
             playerDeck.get_deckList().get(indexSelected).setIsSelected(true);
         }
-        else if(keyStrokeType ) 
     }
 }
