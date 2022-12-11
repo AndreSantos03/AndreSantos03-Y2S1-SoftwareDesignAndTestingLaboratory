@@ -108,6 +108,26 @@ public class GUI {
         }
     }
 
+    public void drawHighlight(int xx,int yy, int width, int height){
+        int range = 3;
+        for(int x = xx - range; x <= xx + width + range ; x ++){
+            for(int y = yy - range; y <= yy;y++){
+                drawPixel(x,y," ","#FFFF00");
+            }
+            for(int y = yy + height; y <= yy + height + range; y++){
+                drawPixel(x,y," ", "#FFFF00");
+            }
+        }
+        for(int y = yy; y <= yy+height;y++){
+            for(int x = xx - range; x<= xx;x++){
+                drawPixel(x,y," ","#FFFF00");
+            }
+            for(int x = xx + width; x<= xx+ width+range;x++){
+                drawPixel(x,y," ","#FFFF00");
+            }
+        }
+    }
+
     public Set<Character> get_pressedKeys() {
         return pressedKeys;
     }

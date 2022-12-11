@@ -1,5 +1,7 @@
 package com.l08gr05.uno.state;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.l08gr05.uno.Application;
 import com.l08gr05.uno.GUI;
 import com.l08gr05.uno.controller.Controller;
 import com.l08gr05.uno.viewer.Viewer;
@@ -20,8 +22,9 @@ public abstract class State<T>{
 
     public T getModel(){return model;}
 
-    public void step(GUI gui) throws Exception {
-        controller.step();
+    public void step(Application application,GUI gui) throws Exception {
+        KeyStroke keyStroke = gui.get_keystroke();
+        controller.step(application,keyStroke);
         viewer.draw(gui);
     }
 

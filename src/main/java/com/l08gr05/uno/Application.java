@@ -17,10 +17,14 @@ public class Application {
         new Application().start();
     }
 
+    public void setState(State state) {
+        this.state = state;
+    }
+
     private void start() throws Exception {
         try {
             while (this.state != null) {
-                state.step(gui);
+                state.step(this,gui);
             }
             gui.close();
         } catch (Exception e) {

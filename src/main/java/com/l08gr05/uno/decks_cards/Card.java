@@ -10,6 +10,7 @@ public class Card{
     private String type;
     private String color;
     private BufferedImage image;
+    private Boolean isSelected;
     private static int cardHeight;
     private static int cardWidth;
     private static BufferedImage backImage;
@@ -24,6 +25,8 @@ public class Card{
 
         image = ImageIO.read(getClass().getResource(resName));
         image = scaleImage(image,cardWidth,cardHeight);
+
+        isSelected = false;
    }
 
     private BufferedImage scaleImage(BufferedImage src, int w,int h) {
@@ -91,4 +94,9 @@ public class Card{
         return backImage;
     }
 
+    public void setIsSelected(boolean selected){
+        isSelected = selected;
+    }
+
+    public Boolean get_isSelected(){return isSelected;}
 }

@@ -24,6 +24,9 @@ public class GameViewer extends Viewer<Game> {
         int y = gui.get_terminalHeight() * 3/4;
         int xInc = gui.get_terminalWidth() * 10 / 12 / deckList.size();
         for(Card card : deckList){
+            if(card.get_isSelected()){
+                gui.drawHighlight(x,y,Card.getWidth(),Card.getHeight());
+            }
             gui.drawImage(x,y,card.get_image());
             x += xInc;
         }
@@ -39,7 +42,7 @@ public class GameViewer extends Viewer<Game> {
         }
     }
     private void drawTop(GUI gui) throws IOException {
-        BufferedImage img = Card.getBackImage();
+        BufferedImage img = getModel().get_topCard().get_image();
         gui.drawImage(gui.get_terminalWidth()/2 - Card.getWidth()/2, gui.get_terminalHeight()/2 - Card.getHeight()/2,img);
     }
 }
