@@ -99,4 +99,7 @@ public class Card{
     }
 
     public Boolean get_isSelected(){return isSelected;}
+    public Boolean canCardBePlayedOver(Card card){
+        return card.color == color || color == "dark" || card.type == type;
+    }
 }

@@ -34,6 +34,18 @@ public class Game {
     }
 
     public Card get_topCard(){
-        return playerDeck.getTop();
+        return playedDeck.getTop();
+    }
+
+    public void setSelectStatus(int index, boolean select){
+        playerDeck.get(index).setIsSelected(select);
+    }
+    public boolean playCardPlayer(int index){
+        if(get_topCard().canCardBePlayedOver(playerDeck.get(index))){
+            playerDeck.get(index).setIsSelected(false);
+            playedDeck.addTop(playerDeck.remove(index));
+            return true;
+        }
+        return false;
     }
 }

@@ -45,6 +45,11 @@ public class Deck {
         }
         return rList;
     }
+
+    public Card get(int index){
+        return deckList.get(index);
+    }
+
     public Card drawFirst(){
         for(int i = 0;i<=deckList.size();i++){
             if(deckList.get(i).isNumber()){

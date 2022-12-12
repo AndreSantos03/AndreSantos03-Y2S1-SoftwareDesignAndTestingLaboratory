@@ -1,6 +1,7 @@
 package com.l08gr05.uno;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.StyleSet;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;

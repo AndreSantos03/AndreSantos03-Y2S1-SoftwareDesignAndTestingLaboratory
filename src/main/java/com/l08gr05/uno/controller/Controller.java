@@ -6,6 +6,8 @@ import com.l08gr05.uno.Application;
 
 public abstract class Controller<T> {
     private final T model;
+    private boolean PlayerTurn;
+
 
     public Controller(T model) {
         this.model = model;

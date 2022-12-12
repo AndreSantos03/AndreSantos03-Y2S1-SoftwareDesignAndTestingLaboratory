@@ -28,6 +28,6 @@ public abstract class State<T>{
             controller.step(application,keyStroke.getKeyType());
         }
         viewer.draw(gui);
-    }
 
+    }
 }
