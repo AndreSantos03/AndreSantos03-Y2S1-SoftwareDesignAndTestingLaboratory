@@ -12,6 +12,7 @@ public class Game {
     private Deck playerDeck;
     private Deck cpuDeck;
     private String color;
+    private Boolean playerDraw;
 
     public Game() throws IOException {
         stackDeck = new StackDeck();
@@ -61,11 +62,27 @@ public class Game {
         }
         return false;
     }
+    public void setPlayerDraw(){
+        playerDraw = true;
+        for(Card card: playerDeck.get_deckList()){
+            if(get_topCard().canCardBePlayedOver(card)){
+                playerDraw = false;
+            }
+        }
+    }
+
+    public void playerDrawCard(){
+        playerDeck.addTop(stackDeck.drawTop());
+    }
 
     public void set_color(String color){
         this.color = color;
     }
     public String get_color(){
         return color;
+    }
+
+    public Boolean get_playerDraw(){
+        return playerDraw;
     }
 }

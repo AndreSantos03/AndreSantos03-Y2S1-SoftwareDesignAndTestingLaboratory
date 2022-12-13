@@ -16,5 +16,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Application application, KeyType keyStrokeType) ;
+    public abstract void step(Application application, KeyStroke keyStroke) ;
 }

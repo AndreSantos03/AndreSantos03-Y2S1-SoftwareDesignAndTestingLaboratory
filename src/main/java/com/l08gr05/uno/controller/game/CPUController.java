@@ -1,5 +1,6 @@
 package com.l08gr05.uno.controller.game;
 
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
@@ -13,7 +14,7 @@ public class CPUController extends GameController{
         super(game);
     }
     @Override
-    public void step(Application application, KeyType keyStrokeType){
+    public void step(Application application, KeyStroke keyStroke){
         List<Card> cardsList = getModel().get_cpuDeck().get_deckList();
         Card topCard = getModel().get_topCard();
 /*      Card Rating System:
@@ -35,7 +36,6 @@ public class CPUController extends GameController{
         7- Same number Different Color
         8- Color Changer
 */
-        System.out.println("Working");
         int min = 10; //random value doesn't matter
         Card playableCard = null;
         for(Card card : cardsList){
