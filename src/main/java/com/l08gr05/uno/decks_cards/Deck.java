@@ -30,6 +30,9 @@ public class Deck {
     public Card remove(int index){
         return deckList.remove(index);
     }
+    public boolean remove(Card card){
+        return deckList.remove(card);
+    }
     public Card getTop(){
         return deckList.get(deckList.size() - 1);
     }

@@ -99,6 +99,28 @@ public class GUI {
         return keyStroke;
     };
 
+    public void drawSquare(int x, int y, int size, String color){
+        String hexColor = "";
+        switch (color){
+            case "yellow":
+                hexColor = "#ffff00";
+                break;
+            case "blue":
+                hexColor = "#0000ff";
+                break;
+            case "green":
+                hexColor = "#00ff00";
+                break;
+            case "red":
+                hexColor = "#ff0000";
+        }
+        for(int xx = x; xx<= x + size;xx++){
+            for(int yy = y; yy<= y + size;yy++){
+                drawPixel(xx, yy, " ", hexColor);
+            }
+        }
+    }
+
     public void drawImage(int x, int y, BufferedImage image) throws IOException {
         for (int xx = 0; xx < image.getWidth(); xx++) {
             for (int yy = 0; yy < image.getHeight(); yy++) {
