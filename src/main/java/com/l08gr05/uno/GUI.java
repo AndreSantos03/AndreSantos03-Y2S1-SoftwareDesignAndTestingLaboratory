@@ -11,6 +11,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.l08gr05.uno.decks_cards.Card;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,6 +33,8 @@ public class GUI {
     private int cardWidth;
     private int cardHeight;
     private KeyStroke keyStroke;
+    private BufferedImage colorText;
+    private BufferedImage drawCardsText;
 
     private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
@@ -69,8 +72,13 @@ public class GUI {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
+        loadUIImages();
     }
 
+    private void loadUIImages() throws IOException {
+        colorText = ImageIO.read(getClass().getResource("/UI/Color.png"));
+        colorText = scaleImage(colorText, terminalWidth/30);
+    }
     public boolean get_run() {
         return run;
     }
@@ -98,7 +106,23 @@ public class GUI {
         keyStroke = screen.pollInput();
         return keyStroke;
     };
-
+    private BufferedImage scaleImage(BufferedImage src, int w){
+        int h = (int) (w * src.getHeight() /src.getWidth());
+        BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (int y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (int x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (int y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
     public void drawSquare(int x, int y, int size, String color){
         String hexColor = "";
         switch (color){
@@ -124,35 +148,40 @@ public class GUI {
     public void drawImage(int x, int y, BufferedImage image) throws IOException {
         for (int xx = 0; xx < image.getWidth(); xx++) {
             for (int yy = 0; yy < image.getHeight(); yy++) {
-                Color c = new Color(image.getRGB(xx, yy));
-                String color = "#" + Integer.toHexString(c.getRGB()).substring(2);
-                drawPixel(xx + x, yy + y, " ", color);
+                if(image == colorText){
+                    System.out.println(image.getRGB(xx,yy));
+                }
+                if(image.getRGB(xx,yy) != 4681804){
+                    Color c = new Color(image.getRGB(xx, yy));
+                    String color = "#" + Integer.toHexString(c.getRGB()). substring(2);
+                    drawPixel(xx + x, yy + y, " ", color);\ za
+                }
             }
         }
     }
 
-    public void drawHighlight(int xx,int yy, int width, int height){
+    public void drawHighlight(int xx,int yy, int width, int height) {
         int range = 3;
-        for(int x = xx - range; x <= xx + width + range ; x ++){
-            for(int y = yy - range; y <= yy;y++){
-                drawPixel(x,y," ","#FFFF00");
+        for (int x = xx - range; x <= xx + width + range; x++) {
+            for (int y = yy - range; y <= yy; y++) {
+                drawPixel(x, y, " ", "#FFFF00");
             }
-            for(int y = yy + height; y <= yy + height + range; y++){
-                drawPixel(x,y," ", "#FFFF00");
+            for (int y = yy + height; y <= yy + height + range; y++) {
+                drawPixel(x, y, " ", "#FFFF00");
             }
         }
-        for(int y = yy; y <= yy+height;y++){
-            for(int x = xx - range; x<= xx;x++){
-                drawPixel(x,y," ","#FFFF00");
+        for (int y = yy; y <= yy + height; y++) {
+            for (int x = xx - range; x <= xx; x++) {
+                drawPixel(x, y, " ", "#FFFF00");
             }
-            for(int x = xx + width; x<= xx+ width+range;x++){
-                drawPixel(x,y," ","#FFFF00");
+            for (int x = xx + width; x <= xx + width + range; x++) {
+                drawPixel(x, y, " ", "#FFFF00");
             }
         }
     }
 
-    public Set<Character> get_pressedKeys() {
-        return pressedKeys;
+    public void drawUI() throws IOException {
+        drawImage(0,0,colorText);
     }
 
     public int get_terminalWidth() {
