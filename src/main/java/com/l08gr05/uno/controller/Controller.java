@@ -7,6 +7,7 @@ import com.l08gr05.uno.Application;
 public abstract class Controller<T> {
     private final T model;
 
+
     public Controller(T model) {
         this.model = model;
     }
@@ -15,5 +16,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Application application, KeyType keyStrokeType) ;
+    public abstract void step(Application application, KeyStroke keyStroke) ;
 }
