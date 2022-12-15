@@ -16,7 +16,7 @@ public class GameViewer extends Viewer<Game> {
         drawPlayer(gui);
         drawCPU(gui);
         drawTop(gui);
-        gui.drawUI();
+//        gui.drawUI();
     }
 
     private void drawPlayer(GUI gui) throws IOException {
