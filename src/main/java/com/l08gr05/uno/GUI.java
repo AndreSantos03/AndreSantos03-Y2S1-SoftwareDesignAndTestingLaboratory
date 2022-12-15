@@ -49,8 +49,7 @@ public class GUI {
         return fontConfig;
     }
 
-    public GUI() throws Exception {
-
+    public void setDimentions() throws IOException {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         terminalHeight = (int)screenSize.getHeight() / fontSize;
         terminalWidth = (int)terminalHeight*16/9;
@@ -58,7 +57,9 @@ public class GUI {
         cardWidth = terminalWidth/14;
         cardHeight = (int) (0.6684 * cardWidth);//to mantain proportions
         Card.setWidthHeight(cardWidth,cardHeight);
+    }
 
+    public void setTerminal() throws Exception{
         AWTTerminalFontConfiguration fontConfig = loadFont();
         TerminalSize terminalSize = new TerminalSize(terminalWidth, terminalHeight);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -66,13 +67,22 @@ public class GUI {
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         terminal = terminalFactory.createTerminal();
         terminal.setBackgroundColor(TextColor.ANSI.RED);
+    }
 
+    public void setScreen() throws IOException {
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
         loadUIImages();
+
+    }
+
+    public GUI() throws Exception {
+        setDimentions();
+        setTerminal();
+        setScreen();
     }
 
     private void loadUIImages() throws IOException {
@@ -154,7 +164,7 @@ public class GUI {
                 if(image.getRGB(xx,yy) != 4681804){
                     Color c = new Color(image.getRGB(xx, yy));
                     String color = "#" + Integer.toHexString(c.getRGB()). substring(2);
-                    drawPixel(xx + x, yy + y, " ", color);\ za
+                    drawPixel(xx + x, yy + y, " ", color);
                 }
             }
         }
