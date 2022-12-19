@@ -1,6 +1,5 @@
 package com.l08gr05.uno.Game;
 
-import com.l08gr05.uno.decks_cards.Card;
 import com.l08gr05.uno.decks_cards.Deck;
 import com.l08gr05.uno.decks_cards.StackDeck;
 
@@ -12,7 +11,6 @@ public class Game {
     private Deck playerDeck;
     private Deck cpuDeck;
     private String color;
-    private Boolean playerDraw;
 
     public Game() throws IOException {
         stackDeck = new StackDeck();
@@ -36,14 +34,18 @@ public class Game {
         return playedDeck;
     }
 
+/*
     public Card get_topCard(){
         return playedDeck.getTop();
     }
+*/
 
+/*
     public void setSelectStatus(int index, boolean select){
         playerDeck.get(index).setIsSelected(select);
     }
-    public boolean playCardPlayer(int index){
+*/
+/*    public boolean playCardPlayer(int index){
         if(get_topCard().canCardBePlayedOver(playerDeck.get(index))){
             playerDeck.get(index).setIsSelected(false);
             playedDeck.addTop(playerDeck.remove(index));
@@ -51,8 +53,8 @@ public class Game {
             return true;
         }
         return false;
-    }
-    public boolean cpuCardPlayer(Card card){
+    }*/
+/*    public boolean cpuCardPlayer(Card card){
         if(get_topCard().canCardBePlayedOver(card)){
             card.setIsSelected(false);
             cpuDeck.remove(card);
@@ -61,7 +63,8 @@ public class Game {
             return true;
         }
         return false;
-    }
+    }*/
+/*
     public void setPlayerDraw(){
         playerDraw = true;
         for(Card card: playerDeck.get_deckList()){
@@ -70,19 +73,18 @@ public class Game {
             }
         }
     }
+*/
 
+/*
     public void playerDrawCard(){
         playerDeck.addTop(stackDeck.drawTop());
     }
+*/
 
     public void set_color(String color){
         this.color = color;
     }
     public String get_color(){
         return color;
-    }
-
-    public Boolean get_playerDraw(){
-        return playerDraw;
     }
 }

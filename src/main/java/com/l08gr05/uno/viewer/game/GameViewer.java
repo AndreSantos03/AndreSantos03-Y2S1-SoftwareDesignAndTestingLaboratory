@@ -16,7 +16,7 @@ public class GameViewer extends Viewer<Game> {
         drawPlayer(gui);
         drawCPU(gui);
         drawTop(gui);
-        gui.drawUI();
+//        gui.drawUI();
     }
 
     private void drawPlayer(GUI gui) throws IOException {
@@ -58,7 +58,7 @@ public class GameViewer extends Viewer<Game> {
     }
 
     private void drawTop(GUI gui) throws IOException {
-        BufferedImage img = getModel().get_topCard().get_image();
+        BufferedImage img = getModel().get_playedDeck().getTop().get_image();
         gui.drawImage(gui.get_terminalWidth()/2 - Card.getWidth()/2, gui.get_terminalHeight()/2 - Card.getHeight()/2,img);
     }
 
