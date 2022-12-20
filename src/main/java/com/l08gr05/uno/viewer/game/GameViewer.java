@@ -2,6 +2,7 @@ package com.l08gr05.uno.viewer.game;
 
 import com.l08gr05.uno.GUI;
 import com.l08gr05.uno.Game.Game;
+import com.l08gr05.uno.controller.game.FlowController;
 import com.l08gr05.uno.decks_cards.Card;
 import com.l08gr05.uno.viewer.Viewer;
 

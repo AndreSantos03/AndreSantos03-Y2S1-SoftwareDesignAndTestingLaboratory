@@ -11,13 +11,14 @@ public class Game {
     private Deck playerDeck;
     private Deck cpuDeck;
     private String color;
-
+    private boolean colorChooser;
     public Game() throws IOException {
         stackDeck = new StackDeck();
         playedDeck = new Deck(stackDeck.drawFirst());
         color = playedDeck.getTop().get_color();
         playerDeck = new Deck(stackDeck.drawTop(7));
         cpuDeck = new Deck(stackDeck.drawTop(7));
+        colorChooser = false;
     }
 
     public Deck get_stackDeck(){
@@ -86,5 +87,11 @@ public class Game {
     }
     public String get_color(){
         return color;
+    }
+    public void set_colorChooser(boolean chooser){
+        colorChooser = chooser;
+    }
+    public boolean get_colorChooser(){
+        return colorChooser;
     }
 }

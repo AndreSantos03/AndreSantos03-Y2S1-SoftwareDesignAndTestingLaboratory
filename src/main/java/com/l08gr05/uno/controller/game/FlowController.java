@@ -23,7 +23,7 @@ public class FlowController extends GameController{
         return playerTurn;
     }
     private GameController getController(){
-        if(getPlayerTurn()){
+        if(playerTurn){
             return playerController;
         }
         return cpuController;
