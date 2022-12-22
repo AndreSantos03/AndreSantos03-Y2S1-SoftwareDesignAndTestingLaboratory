@@ -85,12 +85,7 @@ public class GUI {
         setScreen();
     }
 
-    public boolean get_run() {
-        return run;
-    }
-    public void set_run(boolean run){
-        this.run = run;
-    }
+
     public void refresh() throws IOException {
         screen.refresh();
     }

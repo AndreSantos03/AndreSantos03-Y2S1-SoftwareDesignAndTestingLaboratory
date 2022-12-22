@@ -27,7 +27,7 @@ public class FlowController extends GameController{
     }
     @Override
     public void step(Application application,  Set<Integer> pressedKeys){
-        if(pressedKeys != null && pressedKeys.contains(KeyEvent.VK_ESCAPE)){
+        if(pressedKeys.contains(KeyEvent.VK_ESCAPE)){
             application.setState(null);
         }
         getController().step(application,pressedKeys);

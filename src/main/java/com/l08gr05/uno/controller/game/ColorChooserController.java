@@ -42,17 +42,13 @@ public class ColorChooserController extends GameController{
     }
 
     private void cpuColorChooser(){
-        List<Card> cpuList = getModel().get_cpuDeck().get_deckList();
+        String chosenColor = "blue"; //if it doesn't matter aka last card for example, it will set to standard blue because who doesnt't love blue
         int numRed = 0;
         int numGreen = 0;
         int numBlue = 0;
         int numYellow = 0;
         Map<String,Integer> colors = new HashMap<>();
-        colors.put("red",numRed);
-        colors.put("green",numGreen);
-        colors.put("blue",numBlue);
-        colors.put("yellow",numYellow);
-        for(Card card:cpuList){
+        for(Card card:getModel().get_cpuDeck().get_deckList()){
             switch(card.get_color()){
                 case "red":
                     numRed++;
@@ -67,7 +63,18 @@ public class ColorChooserController extends GameController{
                     numYellow++;
             }
         }
-        String chosenColor = Collections.max(colors.entrySet(), (entry1,entry2) -> entry1.getValue() - entry2.getValue()).getKey();
+        colors.put("red",numRed);
+        colors.put("green",numGreen);
+        colors.put("blue",numBlue);
+        colors.put("yellow",numYellow);
+        int max = 0;
+        for(Map.Entry<String,Integer> entry : colors.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+            if(entry.getValue() > max){
+                max = entry.getValue();
+                chosenColor = entry.getKey();
+            }
+        }
         getModel().set_color(chosenColor);
         getModel().set_colorChooser(false);
         getModel().set_playerTurn(true);

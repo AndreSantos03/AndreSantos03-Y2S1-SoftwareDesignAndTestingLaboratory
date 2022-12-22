@@ -38,7 +38,6 @@ public class Game {
         return playedDeck;
     }
     public boolean get_playerTurn(){
-//        System.out.println("Player turn: " + playerTurn);
         return playerTurn;
     }
     public void set_playerTurn(boolean turn) {
@@ -49,15 +48,13 @@ public class Game {
         this.color = color;
     }
     public String get_color(){
+//        System.out.println(color);
         return color;
     }
     public void set_colorChooser(boolean chooser){
         colorChooser = chooser;
     }
     public boolean get_colorChooser(){
-/*
-        System.out.println("ColorChooser: " + colorChooser);
-*/
         return colorChooser;
     }
     public void set_indexColorChooser(int index){

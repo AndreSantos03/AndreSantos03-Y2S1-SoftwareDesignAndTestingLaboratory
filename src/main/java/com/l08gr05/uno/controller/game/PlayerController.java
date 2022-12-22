@@ -31,17 +31,23 @@ public class PlayerController extends GameController{
     private void playCard(){
         setSelectStatus(indexSelected,false);
         playedCardController.set_playedCard(getModel().get_playerDeck().get(indexSelected));
-        indexSelected = 0;
-        setSelectStatus(indexSelected,true);
     }
     private boolean canCardBePlayed(){
-        Boolean ret = false;
         for(Card card : getModel().get_playerDeck().get_deckList()){
             if(getModel().get_playedDeck().getTop().canCardBePlayedOver(card) || getModel().get_color() == card.get_color()){
-                ret = true;
+                return true;
             }
         }
-        return ret;
+        return false;
+    }
+
+    private boolean checkIfAnySelected(){
+        for(Card card:getModel().get_playerDeck().get_deckList()){
+            if (card.get_isSelected()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void step(Application application, Set<Integer> pressedKeys) {
@@ -50,6 +56,10 @@ public class PlayerController extends GameController{
                 colorChooserController.step(application,pressedKeys);
             }
             else{
+                if(!checkIfAnySelected()){
+                    indexSelected = 0;
+                    setSelectStatus(indexSelected,true);
+                }
                 if(canCardBePlayed()){
                     if (pressedKeys.contains(KeyEvent.VK_RIGHT) && indexSelected != getModel().get_playerDeck().size() - 1) {
                         setSelectStatus(indexSelected, false);
@@ -59,7 +69,7 @@ public class PlayerController extends GameController{
                         setSelectStatus(indexSelected, false);
                         indexSelected--;
                         setSelectStatus(indexSelected, true);
-                    } else if(pressedKeys.contains(KeyEvent.VK_ENTER) && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
+                    } else if(pressedKeys.contains(KeyEvent.VK_ENTER) && (getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected)) ||  getModel().get_playerDeck().get(indexSelected).get_color() == getModel().get_color())){
                         playCard();
                         playedCardController.step(application,pressedKeys);
                     }
