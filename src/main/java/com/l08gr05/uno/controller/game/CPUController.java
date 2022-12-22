@@ -17,12 +17,6 @@ public class CPUController extends GameController {
         colorChooserController = new ColorChooserController(game);
     }
 
-    private void playCard(Card card){
-        getModel().get_playedDeck().addTop(card);
-        getModel().get_cpuDeck().remove(card);
-        getModel().set_playerTurn(true);
-    }
-
     private Card getNextCard() {
         int min = 55; //random value doesn't matter
         Card playableCard = null;
@@ -64,6 +58,7 @@ public class CPUController extends GameController {
             colorChooserController.step(application,keyStroke);
         }
         else if(getNextCard() != null){
+            System.out.println("we done well");
             playedCardController.set_playedCard(getNextCard());
             playedCardController.step(application,keyStroke);
         }

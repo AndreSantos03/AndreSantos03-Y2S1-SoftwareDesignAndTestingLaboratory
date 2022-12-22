@@ -38,57 +38,12 @@ public class Game {
         return playedDeck;
     }
     public boolean get_playerTurn(){
+        System.out.println("Player turn: " + playerTurn);
         return playerTurn;
     }
-    public void set_playerTurn(boolean turn){
+    public void set_playerTurn(boolean turn) {
         playerTurn = turn;
     }
-/*
-    public Card get_topCard(){
-        return playedDeck.getTop();
-    }
-*/
-
-/*
-    public void setSelectStatus(int index, boolean select){
-        playerDeck.get(index).setIsSelected(select);
-    }
-*/
-/*    public boolean playCardPlayer(int index){
-        if(get_topCard().canCardBePlayedOver(playerDeck.get(index))){
-            playerDeck.get(index).setIsSelected(false);
-            playedDeck.addTop(playerDeck.remove(index));
-            color = get_topCard().get_color();
-            return true;
-        }
-        return false;
-    }*/
-/*    public boolean cpuCardPlayer(Card card){
-        if(get_topCard().canCardBePlayedOver(card)){
-            card.setIsSelected(false);
-            cpuDeck.remove(card);
-            playedDeck.addTop(card);
-            color = get_topCard().get_color();
-            return true;
-        }
-        return false;
-    }*/
-/*
-    public void setPlayerDraw(){
-        playerDraw = true;
-        for(Card card: playerDeck.get_deckList()){
-            if(get_topCard().canCardBePlayedOver(card)){
-                playerDraw = false;
-            }
-        }
-    }
-*/
-
-/*
-    public void playerDrawCard(){
-        playerDeck.addTop(stackDeck.drawTop());
-    }
-*/
 
     public void set_color(String color){
         this.color = color;
@@ -100,10 +55,10 @@ public class Game {
         colorChooser = chooser;
     }
     public boolean get_colorChooser(){
+        System.out.println("ColorChooser: " + colorChooser);
         return colorChooser;
     }
     public void set_indexColorChooser(int index){
-        System.out.println(index);
         indexColorChooser = index;
     }
     public int get_indexColorChooser(){

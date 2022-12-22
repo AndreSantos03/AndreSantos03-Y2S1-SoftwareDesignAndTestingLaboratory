@@ -30,7 +30,7 @@ public class GameViewer extends Viewer<Game> {
         int y = gui.get_terminalHeight() * 4/5;
         int xInc = gui.get_terminalWidth() * 10 / 12 / deckList.size();
         for(Card card : deckList){
-            if(card.get_isSelected()){
+            if(card.get_isSelected() && getModel().get_playerTurn() && !getModel().get_colorChooser()){
                 gui.drawHighlight(x,y,Card.getWidth(),Card.getHeight());
             }
             gui.drawImage(x,y,card.get_image());

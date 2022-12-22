@@ -26,8 +26,10 @@ public class PlayerController extends GameController{
     }
 
     private void playCard(){
+        setSelectStatus(indexSelected,false);
         playedCardController.set_playedCard(getModel().get_playerDeck().get(indexSelected));
         indexSelected = 0;
+        setSelectStatus(indexSelected,true);
     }
     private boolean canCardBePlayed(){
         Boolean ret = false;
@@ -43,11 +45,9 @@ public class PlayerController extends GameController{
         if(keyStroke != null){
             if(getModel().get_colorChooser()){
                 colorChooserController.step(application,keyStroke);
-                System.out.println("we here");
             }
             else{
                 if(canCardBePlayed()){
-                    System.out.println(indexSelected);
                     if (keyStroke.getKeyType() == KeyType.ArrowRight && indexSelected != getModel().get_playerDeck().size() - 1) {
                         setSelectStatus(indexSelected, false);
                         indexSelected++;

@@ -6,7 +6,6 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 
 public class FlowController extends GameController{
-    private static boolean playerTurn;
     private final PlayerController playerController;
     private final CPUController cpuController;
 
@@ -14,11 +13,10 @@ public class FlowController extends GameController{
         super(game);
         playerController =  new PlayerController(game);
         cpuController = new CPUController(game);
-        playerTurn = true;
     }
 
     private GameController getController(){
-        if(playerTurn){
+        if(getModel().get_playerTurn()){
             return playerController;
         }
         return cpuController;

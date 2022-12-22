@@ -21,8 +21,8 @@ public class ColorChooserController extends GameController{
         if(keyStroke.getKeyType() == KeyType.ArrowLeft && getModel().get_indexColorChooser() > 0){
             getModel().set_indexColorChooser(getModel().get_indexColorChooser() - 1);
         }
-        else if(keyStroke.getKeyType() == KeyType.ArrowRight && getModel().get_indexColorChooser() > 3){
-            getModel().set_indexColorChooser(getModel().get_indexColorChooser() - 1);
+        else if(keyStroke.getKeyType() == KeyType.ArrowRight && getModel().get_indexColorChooser() < 3){
+            getModel().set_indexColorChooser(getModel().get_indexColorChooser() + 1);
         }
         else if(keyStroke.getKeyType() == KeyType.Enter){
             switch(getModel().get_indexColorChooser()){
