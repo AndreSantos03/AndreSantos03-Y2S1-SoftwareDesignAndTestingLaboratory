@@ -72,6 +72,11 @@ public class PlayedCardController extends GameController{
         getModel().set_colorChooser(true);
         getModel().set_indexColorChooser(0);
     }
+
+    private void restack(){
+        getModel().get_stackDeck().addBottom(getModel().get_playedDeck().drawFromBottom(getModel().get_playedDeck().size() - 1));
+    }
+
     public void step(Application application,  Set<Integer> pressedKeys){
         if(playedCard.isNumber()){
             normal();
@@ -87,6 +92,9 @@ public class PlayedCardController extends GameController{
         }
         else{
             stopReverse();
+        }
+        if(getModel().get_stackDeck().size() <= 4){
+            restack();
         }
     }
 }

@@ -21,6 +21,7 @@ public class Deck {
     public void addTop(List<Card> addedListCards){
         deckList.addAll(addedListCards);
     }
+
     //to be used for when restacking
     public void addBottom(List<Card> listCards){
         for(Card card:listCards){
@@ -32,6 +33,13 @@ public class Deck {
     }
     public void remove(Card card){
         deckList.remove(card);
+    }
+    public List<Card> drawFromBottom(int n){
+        List<Card> ret = new ArrayList<>();
+        for(int i = 1; i <= n;i++){
+            ret.add(deckList.remove(0));
+        }
+        return ret;
     }
     public Card getTop(){
         return deckList.get(deckList.size() - 1);
