@@ -1,17 +1,26 @@
 package com.l08gr05.uno;
 import com.l08gr05.uno.Game.Game;
+import com.l08gr05.uno.Game.Menu;
 import com.l08gr05.uno.state.GameState;
+import com.l08gr05.uno.state.MenuState;
 import com.l08gr05.uno.state.State;
 
 public class Application {
 
     private GUI gui;
     private State state;
-
+/*
     public Application() throws Exception {
         this.gui = new GUI();
         this.state = new GameState(new Game());
     }
+    */
+
+    public Application() throws Exception {
+        this.gui = new GUI();
+        this.state = new MenuState(new Menu());
+    }
+
 
     public static void main(String[] args) throws Exception {
         new Application().start();

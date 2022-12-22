@@ -16,7 +16,8 @@ public class GameState extends State<Game>{
     }
 
 
-    @Override protected Viewer<Game> getViewer(){return new GameViewer(getModel());}
+    @Override
+    protected Viewer<Game> getViewer(){return new GameViewer(getModel());}
 
     @Override
     protected Controller<Game> getController(){

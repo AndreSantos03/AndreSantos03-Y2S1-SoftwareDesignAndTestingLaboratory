@@ -113,7 +113,8 @@ public class GUI {
             for (int yy = 0; yy < image.getHeight(); yy++) {
                 Color c = new Color(image.getRGB(xx, yy));
                 String color = "#" + Integer.toHexString(c.getRGB()).substring(2);
-                drawPixel(xx + x, yy + y, " ", color);
+                if (!color.equals("#47704c"))
+                    drawPixel(xx + x, yy + y, " ", color);
             }
         }
     }
