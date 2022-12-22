@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l08gr05.uno.decks_cards.Card;
 
 import javax.imageio.ImageIO;
+import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -196,6 +197,7 @@ public class GUI {
     public int get_cardHeight(){return cardHeight;}
     public int get_cardWidth(){return cardWidth;}
 
+    /*
     public void drawMenu() throws IOException {
         // BACKGROUND
         BufferedImage img_background = ImageIO.read(getClass().getResource("/UI/BACKGROUND.png"));
@@ -210,6 +212,17 @@ public class GUI {
         BufferedImage img_sair = ImageIO.read(getClass().getResource("/UI/SAIR.png"));
         img_sair = scaleImage(img_sair, img_sair.getWidth() - 25, img_sair.getHeight() - 10);
         drawImage(get_terminalWidth() / 2 - img_sair.getWidth() / 2, get_terminalHeight() / 2 - img_sair.getHeight() / 2 - img_jogar.getHeight() / 2 + 150, img_sair);
+    }
+    */
+
+    public void drawMenuBackGround() throws IOException {
+        BufferedImage img_background = ImageIO.read(getClass().getResource("/UI/BACKGROUND.png"));
+        img_background = scaleImage(img_background, get_terminalWidth(), get_terminalHeight());
+        drawImage(0, 0, img_background);
+    }
+    public void drawMenuElement(int upFromMiddle, String imageFile) throws IOException {
+        BufferedImage img = ImageIO.read(getClass().getResource(imageFile));
+        drawImage(get_terminalWidth() / 2 - img.getWidth() / 2, get_terminalHeight() / 2 - upFromMiddle, img);
     }
 
     private BufferedImage scaleImage(BufferedImage src, int w,int h) {

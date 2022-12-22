@@ -6,6 +6,7 @@ import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.Game.Menu;
 import com.l08gr05.uno.controller.Controller;
 
+import java.awt.event.KeyEvent;
 import java.util.Set;
 
 public class MenuController extends Controller<Menu> {
@@ -14,6 +15,13 @@ public class MenuController extends Controller<Menu> {
 
     @Override
     public void step(Application application, Set<Integer> pressedKeys) {
-        System.out.println("aaaa");
+        if (pressedKeys != null) {
+            if (pressedKeys.contains(KeyEvent.VK_UP))
+                getModel().previousEntry();
+            else if (pressedKeys.contains(KeyEvent.VK_DOWN))
+                getModel().nextEntry();
+            else if (pressedKeys.contains(KeyEvent.VK_ESCAPE))
+                application.setState(null);
+        }
     }
 }
