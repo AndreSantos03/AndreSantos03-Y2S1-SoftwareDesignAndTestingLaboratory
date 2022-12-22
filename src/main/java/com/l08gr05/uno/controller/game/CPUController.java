@@ -5,6 +5,7 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
 
+import java.awt.event.KeyEvent;
 import java.util.Set;
 
 
@@ -54,7 +55,7 @@ public class CPUController extends GameController {
         return playableCard;
     }
 
-    public void step(Application application, Set<Character> pressedKeys)
+    public void step(Application application, Set<Integer> pressedKeys)
     {
         if(getModel().get_colorChooser()){
             colorChooserController.step(application,pressedKeys);

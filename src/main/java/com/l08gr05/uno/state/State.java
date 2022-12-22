@@ -1,10 +1,12 @@
 package com.l08gr05.uno.state;
 
-import com.googlecode.lanterna.input.KeyStroke;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.GUI;
 import com.l08gr05.uno.controller.Controller;
 import com.l08gr05.uno.viewer.Viewer;
+
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 public abstract class State<T>{
     private final T model;

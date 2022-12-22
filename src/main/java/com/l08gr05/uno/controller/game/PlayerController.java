@@ -44,7 +44,7 @@ public class PlayerController extends GameController{
         return ret;
     }
 
-    public void step(Application application, Set<Character> pressedKeys) {
+    public void step(Application application, Set<Integer> pressedKeys) {
         if(pressedKeys != null){
             if(getModel().get_colorChooser()){
                 colorChooserController.step(application,pressedKeys);

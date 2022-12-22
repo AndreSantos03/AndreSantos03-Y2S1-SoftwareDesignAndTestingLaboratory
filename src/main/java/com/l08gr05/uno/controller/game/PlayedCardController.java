@@ -5,6 +5,7 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.Flow;
@@ -71,7 +72,7 @@ public class PlayedCardController extends GameController{
         getModel().set_colorChooser(true);
         getModel().set_indexColorChooser(0);
     }
-    public void step(Application application,  Set<Character> pressedKeys){
+    public void step(Application application,  Set<Integer> pressedKeys){
         if(playedCard.isNumber()){
             normal();
         }

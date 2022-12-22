@@ -15,7 +15,7 @@ public class ColorChooserController extends GameController{
         super(game);
     }
 
-    private void playerColorChooser( Set<Character> pressedKeys){
+    private void playerColorChooser( Set<Integer> pressedKeys){
         if(pressedKeys.contains(KeyEvent.VK_LEFT) && getModel().get_indexColorChooser() > 0){
             getModel().set_indexColorChooser(getModel().get_indexColorChooser() - 1);
         }
@@ -73,7 +73,7 @@ public class ColorChooserController extends GameController{
         getModel().set_playerTurn(true);
     }
 
-    public void step(Application application,  Set<Character> pressedKeys){
+    public void step(Application application,  Set<Integer> pressedKeys){
         if(getModel().get_playerTurn()) {
             playerColorChooser(pressedKeys);
         }

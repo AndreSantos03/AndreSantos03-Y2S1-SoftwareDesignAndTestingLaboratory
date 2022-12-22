@@ -29,12 +29,11 @@ public class GUI {
     private int terminalHeight;
     private Screen screen;
     private TextGraphics tg;
-    private Set<Character> pressedKeys = new HashSet<>();
+    private Set<Integer> pressedKeys;
     private boolean run = true;
     private int fontSize = 2;
     private int cardWidth;
     private int cardHeight;
-    private KeyStroke keyStroke;
 
     private AWTTerminalFontConfiguration loadFont() throws Exception {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
@@ -79,6 +78,7 @@ public class GUI {
     }
 
     public GUI() throws Exception {
+        pressedKeys = new HashSet<>();
         setDimensions();
         setTerminal();
         setScreen();
@@ -108,23 +108,21 @@ public class GUI {
     }
 
     public void updateKeyStrokes (){
-        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter()
-        {
+        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e)
-            {
-                pressedKeys.add(e.getKeyChar());
-                System.out.println(Arrays.toString(pressedKeys.toArray()));
+            public void keyPressed(KeyEvent e) {
+                pressedKeys.add(e.getKeyCode());
+
             }
             @Override
-            public void keyReleased(KeyEvent e)
-            {
-                pressedKeys.remove(e.getKeyChar());
+            public void keyReleased(KeyEvent e) {
+                pressedKeys.remove(e.getKeyCode());
+
             }
         });
     }
 
-    public Set<Character> get_pressedKeys(){
+    public Set<Integer> get_pressedKeys(){
         return pressedKeys;
     }
 

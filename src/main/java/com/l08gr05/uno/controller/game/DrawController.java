@@ -19,7 +19,7 @@ public class DrawController extends GameController{
     private void playerDraw(){
         getModel().get_playerDeck().addTop(getModel().get_stackDeck().drawTop());
     }
-    public void step(Application application, Set<Character> pressedKeys){
+    public void step(Application application, Set<Integer> pressedKeys){
         if(getModel().get_playerTurn()){
             if(pressedKeys.contains(KeyEvent.VK_ENTER)){
                 playerDraw();

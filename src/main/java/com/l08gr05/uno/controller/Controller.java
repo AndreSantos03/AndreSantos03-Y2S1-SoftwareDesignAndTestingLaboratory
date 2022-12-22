@@ -4,6 +4,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 
+import java.awt.event.KeyEvent;
 import java.util.Set;
 
 public abstract class Controller<T> {
@@ -17,5 +18,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Application application, Set<Character> pressedKeys) ;
+    public abstract void step(Application application, Set<Integer> pressedKeys) ;
 }
