@@ -10,6 +10,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.l08gr05.uno.decks_cards.Card;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -153,4 +154,37 @@ public class GUI {
 
     public int get_cardHeight(){return cardHeight;}
     public int get_cardWidth(){return cardWidth;}
+
+    public void drawMenu() throws IOException {
+        // BACKGROUND
+        BufferedImage img_background = ImageIO.read(getClass().getResource("/UI/BACKGROUND.png"));
+        img_background = scaleImage(img_background, get_terminalWidth(), get_terminalHeight());
+        drawImage(0, 0, img_background);
+
+        // JOGAR
+        BufferedImage img_jogar = ImageIO.read(getClass().getResource("/UI/JOGAR.png"));
+        drawImage(get_terminalWidth() / 2 - img_jogar.getWidth() / 2, get_terminalHeight() / 2 - img_jogar.getHeight() / 2, img_jogar);
+
+        // SAIR
+        BufferedImage img_sair = ImageIO.read(getClass().getResource("/UI/SAIR.png"));
+        img_sair = scaleImage(img_sair, img_sair.getWidth() - 25, img_sair.getHeight() - 10);
+        drawImage(get_terminalWidth() / 2 - img_sair.getWidth() / 2, get_terminalHeight() / 2 - img_sair.getHeight() / 2 - img_jogar.getHeight() / 2 + 150, img_sair);
+    }
+
+    private BufferedImage scaleImage(BufferedImage src, int w,int h) {
+        BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (int y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (int x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (int y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
 }

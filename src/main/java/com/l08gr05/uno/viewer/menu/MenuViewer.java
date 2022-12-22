@@ -14,7 +14,6 @@ public class MenuViewer extends Viewer<Menu> {
 
     @Override
     public void drawElements(GUI gui) throws IOException {
-        BufferedImage img = ImageIO.read(getClass().getResource("/UI/JOGAR.png"));
-        gui.drawImage(10,10, img);
+        gui.drawMenu();
     }
 }
