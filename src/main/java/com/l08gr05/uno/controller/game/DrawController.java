@@ -18,7 +18,7 @@ public class DrawController extends GameController{
         getModel().get_playerDeck().addTop(getModel().get_stackDeck().drawTop());
     }
     public void step(Application application, KeyStroke keyStroke){
-        if(FlowController.getPlayerTurn()){
+        if(getModel().get_playerTurn()){
             if(keyStroke.getKeyType() == KeyType.Enter){
                 playerDraw();
             }

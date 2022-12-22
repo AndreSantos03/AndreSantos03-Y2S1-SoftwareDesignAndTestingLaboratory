@@ -20,35 +20,32 @@ public class PlayedCardController extends GameController{
     }
 
     private void stopReverse(){
-        if(FlowController.getPlayerTurn()){
+        if(getModel().get_playerTurn()){
             getModel().get_playerDeck().remove(playedCard);
         }
         else{
             getModel().get_cpuDeck().remove(playedCard);
         }
         getModel().get_playedDeck().addTop(playedCard);
-        System.out.println("Stop reverse");
         getModel().set_color(playedCard.get_color());
     }
 
     private void normal(){
         stopReverse();
-        FlowController.setPlayerTurn(!FlowController.getPlayerTurn());
-        System.out.println("Normal");
+        getModel().set_playerTurn(!getModel().get_playerTurn());
     }
 
     private void draw2(){
         normal();
-        if(FlowController.getPlayerTurn()){
+        if(getModel().get_playerTurn()){
             getModel().get_cpuDeck().addTop(getModel().get_stackDeck().drawTop(2));
         }
         else{
             getModel().get_playerDeck().addTop(getModel().get_stackDeck().drawTop(2));
         }
-        System.out.println("Draw 2");
     }
     private void draw4(){
-        if(FlowController.getPlayerTurn()){
+        if(getModel().get_playerTurn()){
             getModel().get_playerDeck().remove(playedCard);
             getModel().get_cpuDeck().addTop(getModel().get_stackDeck().drawTop(4));
         }
@@ -58,10 +55,11 @@ public class PlayedCardController extends GameController{
         }
         getModel().get_playedDeck().addTop(playedCard);
         getModel().set_colorChooser(true);
-        System.out.println("Draw 4");
+        getModel().set_indexColorChooser(0);
+        getModel().set_colorChooser(true);
     }
     public void colorChanger(){
-        if(FlowController.getPlayerTurn()){
+        if(getModel().get_playerTurn()){
             getModel().get_playerDeck().remove(playedCard);
         }
         else{
@@ -69,7 +67,8 @@ public class PlayedCardController extends GameController{
         }
         getModel().get_playedDeck().addTop(playedCard);
         getModel().set_colorChooser(true);
-        System.out.println("Color Changer");
+        getModel().set_indexColorChooser(0);
+        getModel().set_colorChooser(true);
     }
     public void step(Application application, KeyStroke keyStroke){
         if(playedCard.isNumber()){

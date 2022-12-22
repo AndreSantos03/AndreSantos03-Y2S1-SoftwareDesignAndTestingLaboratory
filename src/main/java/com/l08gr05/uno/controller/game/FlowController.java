@@ -16,12 +16,7 @@ public class FlowController extends GameController{
         cpuController = new CPUController(game);
         playerTurn = true;
     }
-    protected static void setPlayerTurn(boolean turn){
-        playerTurn = turn;
-    }
-    protected static boolean getPlayerTurn(){
-        return playerTurn;
-    }
+
     private GameController getController(){
         if(playerTurn){
             return playerController;

@@ -11,10 +11,13 @@ public class PlayerController extends GameController{
     private int indexSelected;
     private DrawController drawController;
     private PlayedCardController playedCardController;
+    private ColorChooserController colorChooserController;
+    private Boolean colorChooser;
     public PlayerController(Game game){
         super(game);
         drawController = new DrawController(game);
         playedCardController = new PlayedCardController(game);
+        colorChooserController = new ColorChooserController(game);
         indexSelected = 0;
         setSelectStatus(0,true);
     }
@@ -37,27 +40,33 @@ public class PlayerController extends GameController{
     }
 
     public void step(Application application, KeyStroke keyStroke) {
-
-        if (keyStroke != null){
-            if(canCardBePlayed()){
-                System.out.println(indexSelected);
-                if (keyStroke.getKeyType() == KeyType.ArrowRight && indexSelected != getModel().get_playerDeck().size() - 1) {
-                    setSelectStatus(indexSelected, false);
-                    indexSelected++;
-                    setSelectStatus(indexSelected, true);
-                } else if (keyStroke.getKeyType() == KeyType.ArrowLeft && indexSelected != 0) {
-                    setSelectStatus(indexSelected, false);
-                    indexSelected--;
-                    setSelectStatus(indexSelected, true);
-                } else if(keyStroke.getKeyType() == KeyType.Enter && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
-                    playCard();
-                    playedCardController.step(application,keyStroke);
-                }
+        if(keyStroke != null){
+            if(getModel().get_colorChooser()){
+                colorChooserController.step(application,keyStroke);
+                System.out.println("we here");
             }
             else{
-                drawController.step(application,keyStroke);
+                if(canCardBePlayed()){
+                    System.out.println(indexSelected);
+                    if (keyStroke.getKeyType() == KeyType.ArrowRight && indexSelected != getModel().get_playerDeck().size() - 1) {
+                        setSelectStatus(indexSelected, false);
+                        indexSelected++;
+                        setSelectStatus(indexSelected, true);
+                    } else if (keyStroke.getKeyType() == KeyType.ArrowLeft && indexSelected != 0) {
+                        setSelectStatus(indexSelected, false);
+                        indexSelected--;
+                        setSelectStatus(indexSelected, true);
+                    } else if(keyStroke.getKeyType() == KeyType.Enter && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
+                        playCard();
+                        playedCardController.step(application,keyStroke);
+                    }
+                }
+                else{
+                    drawController.step(application,keyStroke);
+                }
             }
         }
+
     }
 //    private int indexSelected;
 //    private CPUController cpuController;

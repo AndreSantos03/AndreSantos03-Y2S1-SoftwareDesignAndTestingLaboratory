@@ -98,7 +98,7 @@ public class GUI {
         screen.close();
     }
 
-    public void drawPixel(int x, int y, String text, String color) {
+    private void drawPixel(int x, int y, String text, String color) {
         tg.setBackgroundColor(TextColor.Factory.fromString(color));
         tg.putString(x, y, text);
     }
@@ -114,6 +114,14 @@ public class GUI {
                 Color c = new Color(image.getRGB(xx, yy));
                 String color = "#" + Integer.toHexString(c.getRGB()).substring(2);
                 drawPixel(xx + x, yy + y, " ", color);
+            }
+        }
+    }
+
+    public void drawSquare(int x, int y, int side, String color){
+        for(int xx = x; xx <= x + side;xx++){
+            for(int yy = y; yy <= y + side;yy++){
+                drawPixel(xx,yy," ",getHex(color));
             }
         }
     }
@@ -136,6 +144,24 @@ public class GUI {
                 drawPixel(x,y," ","#FFFF00");
             }
         }
+    }
+
+    private String getHex(String color){
+        String ret = "";
+        switch(color){
+            case "yellow":
+                ret = "#FFFF00";
+                break;
+            case "green":
+                ret = "#00FF00";
+                break;
+            case "red":
+                ret = "#FF0000";
+                break;
+            case "blue":
+                ret = "#0000FF";
+        }
+        return ret;
     }
 
     public Set<Character> get_pressedKeys() {

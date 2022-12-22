@@ -9,16 +9,18 @@ import com.l08gr05.uno.decks_cards.Card;
 public class CPUController extends GameController {
     private DrawController drawController;
     private PlayedCardController playedCardController;
+    private ColorChooserController colorChooserController;
     public CPUController(Game game){
         super(game);
         drawController = new DrawController(game);
         playedCardController = new PlayedCardController(game);
+        colorChooserController = new ColorChooserController(game);
     }
 
     private void playCard(Card card){
         getModel().get_playedDeck().addTop(card);
         getModel().get_cpuDeck().remove(card);
-        FlowController.setPlayerTurn(true);
+        getModel().set_playerTurn(true);
     }
 
     private Card getNextCard() {
@@ -58,7 +60,10 @@ public class CPUController extends GameController {
 
     public void step(Application application, KeyStroke keyStroke)
     {
-        if(getNextCard() != null){
+        if(getModel().get_colorChooser()){
+            colorChooserController.step(application,keyStroke);
+        }
+        else if(getNextCard() != null){
             playedCardController.set_playedCard(getNextCard());
             playedCardController.step(application,keyStroke);
         }
