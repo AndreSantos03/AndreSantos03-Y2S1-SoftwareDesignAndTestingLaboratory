@@ -6,9 +6,11 @@ import com.l08gr05.uno.controller.menu.MenuController;
 import com.l08gr05.uno.viewer.Viewer;
 import com.l08gr05.uno.viewer.menu.MenuViewer;
 
+import java.io.IOException;
+
 public class MenuState extends State<Menu> {
 
-    public MenuState(Menu menu) {super(menu);}
+    public MenuState(Menu menu) throws IOException {super(menu);}
 
     @Override
     protected Viewer<Menu> getViewer() {return new MenuViewer(getModel());}

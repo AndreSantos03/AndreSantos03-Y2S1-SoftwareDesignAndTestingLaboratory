@@ -73,8 +73,10 @@ public class PlayerController extends GameController{
                         playCard();
                         playedCardController.step(application,pressedKeys);
                     }
+                    getModel().set_playerDraw(false);
                 }
                 else{
+                    getModel().set_playerDraw(true);
                     drawController.step(application,pressedKeys);
                 }
             }

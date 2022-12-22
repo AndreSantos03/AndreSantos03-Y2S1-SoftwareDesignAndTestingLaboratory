@@ -14,6 +14,7 @@ public class Game {
     private boolean colorChooser;
     private int indexColorChooser;
     private boolean playerTurn;
+    private boolean playerDraw;
     public Game() throws IOException {
         stackDeck = new StackDeck();
         playedDeck = new Deck(stackDeck.drawFirst());
@@ -22,6 +23,7 @@ public class Game {
         cpuDeck = new Deck(stackDeck.drawTop(7));
         colorChooser = false;
         playerTurn = true;
+        playerDraw = false;
     }
 
     public Deck get_stackDeck(){
@@ -62,5 +64,11 @@ public class Game {
     }
     public int get_indexColorChooser(){
         return indexColorChooser;
+    }
+    public void set_playerDraw(boolean draw){
+        playerDraw = draw;
+    }
+    public boolean get_playerDraw(){
+        return playerDraw;
     }
 }

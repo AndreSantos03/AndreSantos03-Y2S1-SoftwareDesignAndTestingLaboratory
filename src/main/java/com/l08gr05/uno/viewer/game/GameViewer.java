@@ -2,17 +2,46 @@ package com.l08gr05.uno.viewer.game;
 
 import com.l08gr05.uno.GUI;
 import com.l08gr05.uno.Game.Game;
-import com.l08gr05.uno.controller.game.FlowController;
 import com.l08gr05.uno.decks_cards.Card;
 import com.l08gr05.uno.viewer.Viewer;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Flow;
 
 public class GameViewer extends Viewer<Game> {
-    public GameViewer(Game game){super(game);}
+
+    private BufferedImage drawText;
+    private BufferedImage colorText;
+    public GameViewer(Game game) throws IOException {
+        super(game);
+        loadImages();
+    }
+
+    private void loadImages() throws IOException {
+        drawText = ImageIO.read(getClass().getResource("/UI/DrawCardsText.png"));
+        drawText = scaleImage(drawText, Card.getWidth() * 8);
+        colorText = ImageIO.read(getClass().getResource("/UI/Color.png"));
+        colorText = scaleImage(colorText, (int)(Card.getWidth() * 1.4));
+    }
+    private BufferedImage scaleImage(BufferedImage src, int w) {
+        int h = w * src.getHeight() / src.getWidth();
+        BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (int y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (int x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (int y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
     @Override
     public void drawElements(GUI gui) throws IOException {
         drawPlayer(gui);
@@ -21,7 +50,7 @@ public class GameViewer extends Viewer<Game> {
         if(getModel().get_colorChooser() && getModel().get_playerTurn()){
             drawColorChooser(gui);
         }
-//        gui.drawUI();
+        drawUI(gui);
     }
 
     private void drawPlayer(GUI gui) throws IOException {
@@ -84,6 +113,14 @@ public class GameViewer extends Viewer<Game> {
     private void drawTop(GUI gui) throws IOException {
         BufferedImage img = getModel().get_playedDeck().getTop().get_image();
         gui.drawImage(gui.get_terminalWidth()/2 - Card.getWidth()/2, gui.get_terminalHeight()/2 - Card.getHeight()/2,img);
+    }
+
+    private void drawUI(GUI gui) throws IOException {
+        gui.drawImage( gui.get_terminalWidth()/40,(int)(gui.get_terminalHeight() / 2.75),colorText);
+        gui.drawSquare(gui.get_terminalWidth()/40,(int)(gui.get_terminalHeight() / 2 - Card.getHeight() * 0.75),(int)(Card.getHeight()*1.5), getModel().get_color());
+        if(getModel().get_playerDraw()){
+            gui.drawImage(gui.get_terminalWidth() / 2 - drawText.getWidth() / 2,gui.get_terminalHeight() * 13 / 20, drawText);
+        }
     }
 
 }
