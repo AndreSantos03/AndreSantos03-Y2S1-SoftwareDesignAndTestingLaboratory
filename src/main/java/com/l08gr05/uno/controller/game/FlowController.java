@@ -5,6 +5,9 @@ import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 
+import java.awt.event.KeyEvent;
+import java.util.Set;
+
 public class FlowController extends GameController{
     private final PlayerController playerController;
     private final CPUController cpuController;
@@ -22,10 +25,10 @@ public class FlowController extends GameController{
         return cpuController;
     }
     @Override
-    public void step(Application application, KeyStroke keyStroke){
-        if(keyStroke != null && keyStroke.getKeyType() == KeyType.Escape){
+    public void step(Application application,  Set<Character> pressedKeys){
+        if(pressedKeys != null && pressedKeys.contains(KeyEvent.VK_ENTER)){
             application.setState(null);
         }
-        getController().step(application,keyStroke);
+        getController().step(application,pressedKeys);
     }
 }

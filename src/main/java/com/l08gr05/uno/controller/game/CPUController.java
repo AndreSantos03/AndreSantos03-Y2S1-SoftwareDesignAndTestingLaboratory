@@ -5,6 +5,8 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
 
+import java.util.Set;
+
 
 public class CPUController extends GameController {
     private DrawController drawController;
@@ -52,18 +54,17 @@ public class CPUController extends GameController {
         return playableCard;
     }
 
-    public void step(Application application, KeyStroke keyStroke)
+    public void step(Application application, Set<Character> pressedKeys)
     {
         if(getModel().get_colorChooser()){
-            colorChooserController.step(application,keyStroke);
+            colorChooserController.step(application,pressedKeys);
         }
         else if(getNextCard() != null){
-            System.out.println("we done well");
             playedCardController.set_playedCard(getNextCard());
-            playedCardController.step(application,keyStroke);
+            playedCardController.step(application,pressedKeys);
         }
         else{
-            drawController.step(application,keyStroke);
+            drawController.step(application,pressedKeys);
         }
     }
 

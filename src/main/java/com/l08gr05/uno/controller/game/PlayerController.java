@@ -7,6 +7,9 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
 
+import java.awt.event.KeyEvent;
+import java.util.Set;
+
 public class PlayerController extends GameController{
     private int indexSelected;
     private DrawController drawController;
@@ -41,28 +44,28 @@ public class PlayerController extends GameController{
         return ret;
     }
 
-    public void step(Application application, KeyStroke keyStroke) {
-        if(keyStroke != null){
+    public void step(Application application, Set<Character> pressedKeys) {
+        if(pressedKeys != null){
             if(getModel().get_colorChooser()){
-                colorChooserController.step(application,keyStroke);
+                colorChooserController.step(application,pressedKeys);
             }
             else{
                 if(canCardBePlayed()){
-                    if (keyStroke.getKeyType() == KeyType.ArrowRight && indexSelected != getModel().get_playerDeck().size() - 1) {
+                    if (pressedKeys.contains(KeyEvent.VK_RIGHT) && indexSelected != getModel().get_playerDeck().size() - 1) {
                         setSelectStatus(indexSelected, false);
                         indexSelected++;
                         setSelectStatus(indexSelected, true);
-                    } else if (keyStroke.getKeyType() == KeyType.ArrowLeft && indexSelected != 0) {
+                    } else if (pressedKeys.contains(KeyEvent.VK_LEFT) && indexSelected != 0) {
                         setSelectStatus(indexSelected, false);
                         indexSelected--;
                         setSelectStatus(indexSelected, true);
-                    } else if(keyStroke.getKeyType() == KeyType.Enter && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
+                    } else if(pressedKeys.contains(KeyEvent.VK_ENTER) && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
                         playCard();
-                        playedCardController.step(application,keyStroke);
+                        playedCardController.step(application,pressedKeys);
                     }
                 }
                 else{
-                    drawController.step(application,keyStroke);
+                    drawController.step(application,pressedKeys);
                 }
             }
         }

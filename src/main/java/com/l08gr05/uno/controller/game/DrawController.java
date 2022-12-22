@@ -5,6 +5,8 @@ import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 
+import java.awt.event.KeyEvent;
+import java.util.Set;
 import java.util.concurrent.Flow;
 
 public class DrawController extends GameController{
@@ -17,9 +19,9 @@ public class DrawController extends GameController{
     private void playerDraw(){
         getModel().get_playerDeck().addTop(getModel().get_stackDeck().drawTop());
     }
-    public void step(Application application, KeyStroke keyStroke){
+    public void step(Application application, Set<Character> pressedKeys){
         if(getModel().get_playerTurn()){
-            if(keyStroke.getKeyType() == KeyType.Enter){
+            if(pressedKeys.contains(KeyEvent.VK_ENTER)){
                 playerDraw();
             }
         }

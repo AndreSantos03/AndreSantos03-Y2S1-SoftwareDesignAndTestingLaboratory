@@ -6,10 +6,8 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.awt.event.KeyEvent;
+import java.util.*;
 import java.util.concurrent.Flow;
 
 public class ColorChooserController extends GameController{
@@ -17,14 +15,14 @@ public class ColorChooserController extends GameController{
         super(game);
     }
 
-    private void playerColorChooser(KeyStroke keyStroke){
-        if(keyStroke.getKeyType() == KeyType.ArrowLeft && getModel().get_indexColorChooser() > 0){
+    private void playerColorChooser( Set<Character> pressedKeys){
+        if(pressedKeys.contains(KeyEvent.VK_LEFT) && getModel().get_indexColorChooser() > 0){
             getModel().set_indexColorChooser(getModel().get_indexColorChooser() - 1);
         }
-        else if(keyStroke.getKeyType() == KeyType.ArrowRight && getModel().get_indexColorChooser() < 3){
+        else if(pressedKeys.contains(KeyEvent.VK_RIGHT) && getModel().get_indexColorChooser() < 3){
             getModel().set_indexColorChooser(getModel().get_indexColorChooser() + 1);
         }
-        else if(keyStroke.getKeyType() == KeyType.Enter){
+        else if(pressedKeys.contains(KeyEvent.VK_ENTER)){
             switch(getModel().get_indexColorChooser()){
                 case 0:
                     getModel().set_color("red");
@@ -75,9 +73,9 @@ public class ColorChooserController extends GameController{
         getModel().set_playerTurn(true);
     }
 
-    public void step(Application application, KeyStroke keyStroke){
+    public void step(Application application,  Set<Character> pressedKeys){
         if(getModel().get_playerTurn()) {
-            playerColorChooser(keyStroke);
+            playerColorChooser(pressedKeys);
         }
         else{
             cpuColorChooser();

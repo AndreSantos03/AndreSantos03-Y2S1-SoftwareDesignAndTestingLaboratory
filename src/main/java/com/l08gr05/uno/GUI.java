@@ -8,13 +8,17 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l08gr05.uno.decks_cards.Card;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -103,10 +107,27 @@ public class GUI {
         tg.putString(x, y, text);
     }
 
-    public KeyStroke get_keystroke() throws IOException {
-        keyStroke = screen.pollInput();
-        return keyStroke;
-    };
+    public void updateKeyStrokes (){
+        ((AWTTerminalFrame)terminal).getComponent(0).addKeyListener(new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                pressedKeys.add(e.getKeyChar());
+                System.out.println(Arrays.toString(pressedKeys.toArray()));
+            }
+            @Override
+            public void keyReleased(KeyEvent e)
+            {
+                pressedKeys.remove(e.getKeyChar());
+            }
+        });
+    }
+
+    public Set<Character> get_pressedKeys(){
+        return pressedKeys;
+    }
+
 
     public void drawImage(int x, int y, BufferedImage image) throws IOException {
         for (int xx = 0; xx < image.getWidth(); xx++) {
@@ -162,10 +183,6 @@ public class GUI {
                 ret = "#0000FF";
         }
         return ret;
-    }
-
-    public Set<Character> get_pressedKeys() {
-        return pressedKeys;
     }
 
     public int get_terminalWidth() {

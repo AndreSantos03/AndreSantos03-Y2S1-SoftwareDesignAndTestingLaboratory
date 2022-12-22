@@ -23,8 +23,8 @@ public abstract class State<T>{
     public T getModel(){return model;}
 
     public void step(Application application,GUI gui) throws Exception {
-        KeyStroke keyStroke = gui.get_keystroke();
-        controller.step(application,keyStroke);
+        gui.updateKeyStrokes();
+        controller.step(application,gui.get_pressedKeys());
         viewer.draw(gui);
     }
 }
