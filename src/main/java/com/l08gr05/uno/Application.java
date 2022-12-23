@@ -10,13 +10,6 @@ public class Application {
     private GUI gui;
     private State state;
 
-    /*
-    public Application() throws Exception {
-        this.gui = new GUI();
-        this.state = new GameState(new Game());
-    }
-    */
-
     public Application() throws Exception {
         this.gui = new GUI();
         this.state = new MenuState(new Menu());

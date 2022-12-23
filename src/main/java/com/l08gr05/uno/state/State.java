@@ -6,6 +6,7 @@ import com.l08gr05.uno.controller.Controller;
 import com.l08gr05.uno.viewer.Viewer;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Arrays;
 
 public abstract class State<T>{
@@ -19,7 +20,7 @@ public abstract class State<T>{
         this.controller = getController();
     }
 
-    protected abstract Viewer<T> getViewer();
+    protected abstract Viewer<T> getViewer() throws IOException;
     protected abstract Controller<T> getController();
 
     public T getModel(){return model;}

@@ -6,6 +6,7 @@ import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class FlowController extends GameController{
         return cpuController;
     }
     @Override
-    public void step(Application application,  Set<Integer> pressedKeys){
+    public void step(Application application,  Set<Integer> pressedKeys) throws IOException {
         if(pressedKeys != null && pressedKeys.contains(KeyEvent.VK_ESCAPE)){
             application.setState(null);
         }
