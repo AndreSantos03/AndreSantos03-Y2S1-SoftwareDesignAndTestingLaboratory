@@ -30,18 +30,24 @@ This project was developed by André Santos (up202108658@fe.up.pt), António Ram
 
 > The main smell we encountered was the overuse of ifs in the viewer. We also have the duplicate code smell throughot different classes and there are classes which are overcrowded with attributes, mainly the GUI class.
 
+> One of the things we did wrong in the game was using Buffered Images instead of personalizing a font. This led to be very difficult to implement tests and also made the game a bit slow.
+
 >In terms of the refactoring that has been done, we have switched the Architectural Pattern to the MVC completely, thus cleaning up the code a lot. We have also implemented various different classes in the controller to facilitate the smooth running of the game rules and we have removed every single logic step that was present in the game model.
 
 
 ### TESTING
 
-> There are tests on the Stack Deck [here](src/test/java/com/l08gr05/uno/decks_cards/StackDeckTest.java).
+> The only tests we did were on the PlayerController, in them we used mocks and stubs.
+
+[here](src/test/java/com/l08gr05/uno/controller/game/PlayerControllerTest.java).
 
 ![png](images/test1.png)
 
-> And tests on the Decks Handler [here](src/test/java/com/l08gr05/uno/gamelogic/DecksHandlerTest.java).
-
 ![png](images/test2.png)
+
+> We tried testing the viewer and the GUI but because we used Buffered Images it turned out to difficult.
+
+
 ### SELF-EVALUATION
 
 > All of us worked well for this project and did most of the code in a group call.
