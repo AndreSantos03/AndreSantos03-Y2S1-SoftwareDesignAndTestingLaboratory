@@ -57,7 +57,7 @@ These classes can be found here:
 
 ### TESTING
 
-> There are tests on the Stack Deck [here](src/test/java/com/l08gr05/uno/decks/StackDeckTest.java).
+> There are tests on the Stack Deck [here](src/test/java/com/l08gr05/uno/decks_cards/StackDeckTest.java).
 
 ![png](images/test1.png)
 
