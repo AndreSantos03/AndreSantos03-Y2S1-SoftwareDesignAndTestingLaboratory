@@ -69,7 +69,6 @@ public class ColorChooserController extends GameController{
         colors.put("yellow",numYellow);
         int max = 0;
         for(Map.Entry<String,Integer> entry : colors.entrySet()){
-            System.out.println(entry.getKey() + ": " + entry.getValue());
             if(entry.getValue() > max){
                 max = entry.getValue();
                 chosenColor = entry.getKey();

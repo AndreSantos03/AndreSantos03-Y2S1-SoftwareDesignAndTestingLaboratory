@@ -5,9 +5,12 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
+import com.l08gr05.uno.Game.Menu;
 import com.l08gr05.uno.decks_cards.Card;
+import com.l08gr05.uno.state.MenuState;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Set;
 
 public class PlayerController extends GameController{
@@ -44,7 +47,7 @@ public class PlayerController extends GameController{
         return ret;
     }
 
-    public void step(Application application, Set<Integer> pressedKeys) {
+    public void step(Application application, Set<Integer> pressedKeys) throws IOException {
         if(pressedKeys != null){
             if(getModel().get_colorChooser()){
                 colorChooserController.step(application,pressedKeys);
@@ -62,7 +65,7 @@ public class PlayerController extends GameController{
                     } else if(pressedKeys.contains(KeyEvent.VK_ENTER) && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
                         if(getModel().get_playerDeck().size() == 1){
                             //player won
-                            application.setState(null);
+                            application.setState(new MenuState(new Menu()));
                         }
                         playCard();
                         playedCardController.step(application,pressedKeys);
