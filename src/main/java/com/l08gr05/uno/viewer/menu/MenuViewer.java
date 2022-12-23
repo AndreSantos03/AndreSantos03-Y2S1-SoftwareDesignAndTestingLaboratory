@@ -6,7 +6,6 @@ import com.l08gr05.uno.viewer.Viewer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.IOException;
 
 public class MenuViewer extends Viewer<Menu> {

@@ -3,9 +3,9 @@ package com.l08gr05.uno.controller.game;
 
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
-import com.l08gr05.uno.Game.Menu;
+
 import com.l08gr05.uno.decks_cards.Card;
-import com.l08gr05.uno.state.MenuState;
+
 
 
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class CPUController extends GameController {
     public void step(Application application, Set<Integer> pressedKeys) throws IOException {
         if(getModel().get_cpuDeck().size() == 1 && getNextCard() != null){
             //cpuWon
-            application.setState(new MenuState(new Menu()));
+            application.setState(null);
         }
         if(getModel().get_colorChooser()){
             colorChooserController.step(application,pressedKeys);

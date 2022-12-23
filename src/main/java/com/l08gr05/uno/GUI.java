@@ -33,7 +33,7 @@ public class GUI {
     private TextGraphics tg;
     private Set<Integer> pressedKeys;
     private boolean run = true;
-    private int fontSize = 2;
+    private int fontSize = 3;
     private int cardWidth;
     private int cardHeight;
 

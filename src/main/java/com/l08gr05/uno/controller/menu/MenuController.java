@@ -1,12 +1,11 @@
 package com.l08gr05.uno.controller.menu;
 
-import com.googlecode.lanterna.input.KeyStroke;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.Game.Menu;
 import com.l08gr05.uno.controller.Controller;
 import com.l08gr05.uno.state.GameState;
-import com.l08gr05.uno.state.MenuState;
+
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -27,6 +26,7 @@ public class MenuController extends Controller<Menu> {
                 application.setState(null);
             else if(pressedKeys.contains(KeyEvent.VK_ENTER)){
                 if(getModel().isSelectedJogar()){
+                    System.out.println("Loading...");
                     application.setState(new GameState(new Game()));
                 }
                 else{

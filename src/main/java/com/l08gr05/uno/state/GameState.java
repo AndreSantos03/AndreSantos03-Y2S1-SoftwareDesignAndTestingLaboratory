@@ -2,10 +2,8 @@ package com.l08gr05.uno.state;
 
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.controller.Controller;
-import com.l08gr05.uno.controller.game.CPUController;
 import com.l08gr05.uno.controller.game.FlowController;
-import com.l08gr05.uno.controller.game.GameController;
-import com.l08gr05.uno.controller.game.PlayerController;
+
 import com.l08gr05.uno.viewer.Viewer;
 import com.l08gr05.uno.viewer.game.GameViewer;
 

@@ -66,7 +66,7 @@ public class GameViewer extends Viewer<Game> {
             x += xInc;
         }
     }
-/*    private void drawCPU(GUI gui) throws IOException {
+    private void drawCPU(GUI gui) throws IOException {
         int size = getModel().get_cpuDeck().size();
         int x = gui.get_terminalWidth() / 12;
         int y = gui.get_terminalHeight() * 1/8;
@@ -75,9 +75,9 @@ public class GameViewer extends Viewer<Game> {
             gui.drawImage(x,y,Card.getBackImage());
             x += xInc;
         }
-    }*/
+    }
 
-    private void drawCPU(GUI gui) throws IOException {
+/*    private void drawCPU(GUI gui) throws IOException {
         List<Card> deckList = getModel().get_cpuDeck().get_deckList();
         int x = gui.get_terminalWidth() / 12;
         int y = gui.get_terminalHeight() * 1 / 8;
@@ -89,7 +89,7 @@ public class GameViewer extends Viewer<Game> {
             gui.drawImage(x, y, card.get_image());
             x += xInc;
         }
-    }
+    }*/
     private void drawColorChooser(GUI gui){
         int increment = (gui.get_terminalWidth() - gui.get_terminalWidth() / 5) / 4;
         gui.drawSquare(gui.get_terminalWidth()/5 - gui.get_cardHeight() / 2, gui.get_terminalHeight()*3/5, gui.get_cardHeight(), "red");
