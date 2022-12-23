@@ -13,7 +13,7 @@ public class MenuState extends State<Menu> {
     public MenuState(Menu menu) throws IOException {super(menu);}
 
     @Override
-    protected Viewer<Menu> getViewer() {return new MenuViewer(getModel());}
+    protected Viewer<Menu> getViewer() throws IOException {return new MenuViewer(getModel());}
 
     @Override
     protected Controller<Menu> getController() {return new MenuController(getModel());}

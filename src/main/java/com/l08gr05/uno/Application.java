@@ -12,9 +12,8 @@ public class Application {
 
     public Application() throws Exception {
         this.gui = new GUI();
-        this.state = new GameState(new Game());
+        this.state = new MenuState(new Menu());
     }
-
 
     public static void main(String[] args) throws Exception {
         new Application().start();

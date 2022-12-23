@@ -7,7 +7,7 @@ public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
 
-    public Menu() {this.entries = Arrays.asList("Jogar", "Sair");}
+    public Menu() {this.entries = Arrays.asList("/UI/JOGAR", "/UI/SAIR");}
 
     public void nextEntry() {
         currentEntry++;
@@ -28,4 +28,6 @@ public class Menu {
     public boolean isSelectedJogar() {return isSelected(0);}
 
     public boolean isSelectedSair() {return isSelected(1);}
+
+    public int getNumberEntries() {return entries.size();}
 }
