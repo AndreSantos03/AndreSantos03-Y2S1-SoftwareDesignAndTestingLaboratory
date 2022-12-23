@@ -9,9 +9,11 @@ import com.l08gr05.uno.controller.game.PlayerController;
 import com.l08gr05.uno.viewer.Viewer;
 import com.l08gr05.uno.viewer.game.GameViewer;
 
+import java.io.IOException;
+
 public class GameState extends State<Game>{
 
-    public GameState (Game game){
+    public GameState (Game game) throws IOException {
         super(game);
     }
 

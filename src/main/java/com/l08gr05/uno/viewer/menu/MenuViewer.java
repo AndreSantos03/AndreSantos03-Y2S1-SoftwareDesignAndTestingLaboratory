@@ -24,14 +24,15 @@ public class MenuViewer extends Viewer<Menu> {
 
     private void loadImages() throws IOException {
         backgroundImg = ImageIO.read(getClass().getResource("/UI/BACKGROUND.png"));
-        backgroundImg = scaleImage(backgroundImg, , gui.get_terminalHeight());
+        backgroundImg = scaleImage(backgroundImg, GUI.getTerminalWidth());
         jogar = ImageIO.read(getClass().getResource("/UI/JOGAR.png"));
         backgroundImg = ImageIO.read(getClass().getResource("/UI/JOGAR_HIGHLIGHTED.png"));
         backgroundImg = ImageIO.read(getClass().getResource("/UI/SAIR.png"));
         backgroundImg = ImageIO.read(getClass().getResource("/UI/SAIR_HIGHLIGHTED.png"));
     };
 
-    private BufferedImage scaleImage(BufferedImage src, int w,int h) {
+    private BufferedImage scaleImage(BufferedImage src, int w) {
+        int h = src.getHeight() / src.getWidth() * w;
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         int ww = src.getWidth();
         int hh = src.getHeight();
@@ -50,8 +51,18 @@ public class MenuViewer extends Viewer<Menu> {
 
     @Override
     public void drawElements(GUI gui) throws IOException {
-        gui.drawMenuBackGround();
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawMenuElement(- i * 100, getModel().isSelected(i) ? getModel().getEntry(i) + "_HIGHLIGHTED.png" : getModel().getEntry(i) + ".png");
+        gui.drawImage(0,0,backgroundImg);
+        if(getModel().isSelected(0)){
+            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,jogarHighlighed);
+            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,sair);
+        }
+        else{
+            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,jogar);
+            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,sairHighlighed);
+        }
+//        gui.drawMenuBackGround();
+//        for (int i = 0; i < getModel().getNumberEntries(); i++)
+//            gui.drawMenuElement(- i * 100, getModel().isSelected(i) ? getModel().getEntry(i) + "_HIGHLIGHTED.png" : getModel().getEntry(i) + ".png");
     }
+
 }
