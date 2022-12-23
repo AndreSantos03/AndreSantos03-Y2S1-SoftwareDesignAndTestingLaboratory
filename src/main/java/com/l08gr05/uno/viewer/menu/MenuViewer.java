@@ -26,13 +26,17 @@ public class MenuViewer extends Viewer<Menu> {
         backgroundImg = ImageIO.read(getClass().getResource("/UI/BACKGROUND.png"));
         backgroundImg = scaleImage(backgroundImg, GUI.getTerminalWidth());
         jogar = ImageIO.read(getClass().getResource("/UI/JOGAR.png"));
-        backgroundImg = ImageIO.read(getClass().getResource("/UI/JOGAR_HIGHLIGHTED.png"));
-        backgroundImg = ImageIO.read(getClass().getResource("/UI/SAIR.png"));
-        backgroundImg = ImageIO.read(getClass().getResource("/UI/SAIR_HIGHLIGHTED.png"));
+        jogar = scaleImage(jogar,GUI.getTerminalWidth()/5);
+        jogarHighlighed = ImageIO.read(getClass().getResource("/UI/JOGAR_HIGHLIGHTED.png"));
+        jogarHighlighed = scaleImage(jogarHighlighed,GUI.getTerminalWidth()/5);
+        sair = ImageIO.read(getClass().getResource("/UI/SAIR.png"));
+        sair = scaleImage(sair,GUI.getTerminalWidth()/7);
+        sairHighlighed = ImageIO.read(getClass().getResource("/UI/SAIR_HIGHLIGHTED.png"));
+        sairHighlighed = scaleImage(sairHighlighed,GUI.getTerminalWidth()/7);
     };
 
     private BufferedImage scaleImage(BufferedImage src, int w) {
-        int h = src.getHeight() / src.getWidth() * w;
+        int h = w*src.getHeight() / src.getWidth();
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         int ww = src.getWidth();
         int hh = src.getHeight();
@@ -52,13 +56,16 @@ public class MenuViewer extends Viewer<Menu> {
     @Override
     public void drawElements(GUI gui) throws IOException {
         gui.drawImage(0,0,backgroundImg);
+        int xSair = gui.get_terminalWidth() / 2 - sairHighlighed.getWidth() / 2;
+        int xJogar = gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2;
+        int yInc =  gui.get_terminalHeight() / 7;
         if(getModel().isSelected(0)){
-            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,jogarHighlighed);
-            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,sair);
+            gui.drawImage(xJogar, gui.get_terminalHeight() / 2 - yInc,jogarHighlighed);
+            gui.drawImage(xSair, gui.get_terminalHeight() / 2 + yInc,sair);
         }
         else{
-            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,jogar);
-            gui.drawImage(gui.get_terminalWidth() / 2 - jogarHighlighed.getWidth() / 2, gui.get_terminalHeight() / 2 + gui.get_terminalHeight() / 7,sairHighlighed);
+            gui.drawImage(xJogar, gui.get_terminalHeight() / 2 - yInc,jogar);
+            gui.drawImage(xSair, gui.get_terminalHeight() / 2 + yInc,sairHighlighed);
         }
 //        gui.drawMenuBackGround();
 //        for (int i = 0; i < getModel().getNumberEntries(); i++)

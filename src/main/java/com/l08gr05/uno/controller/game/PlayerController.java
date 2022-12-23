@@ -60,6 +60,10 @@ public class PlayerController extends GameController{
                         indexSelected--;
                         setSelectStatus(indexSelected, true);
                     } else if(pressedKeys.contains(KeyEvent.VK_ENTER) && getModel().get_playedDeck().getTop().canCardBePlayedOver(getModel().get_playerDeck().get(indexSelected))){
+                        if(getModel().get_playerDeck().size() == 1){
+                            //player won
+                            application.setState(null);
+                        }
                         playCard();
                         playedCardController.step(application,pressedKeys);
                     }

@@ -56,7 +56,10 @@ public class CPUController extends GameController {
     }
 
     public void step(Application application, Set<Integer> pressedKeys)
-    {
+    {   if(getModel().get_cpuDeck().size() == 1 && getNextCard() != null){
+            //cpuWon
+            application.setState(null);
+        }
         if(getModel().get_colorChooser()){
             colorChooserController.step(application,pressedKeys);
         }
