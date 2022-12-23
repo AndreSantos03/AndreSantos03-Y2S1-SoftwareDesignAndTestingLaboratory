@@ -1,6 +1,6 @@
 ## LDTS_<08><05> - UNO
 
->For this project, we decided to implement the famous game of Uno. We play the game against one or more CPUs where the classic rules of UNO apply. We will later implement a button in the game in which the user can click to see all the rules and different game modes explained.
+>For this project, we decided to implement the famous game of Uno. We play the game against one where the classic rules of UNO apply.
 
 This project was developed by André Santos (up202108658@fe.up.pt), António Rama (up202108801@fe.up.pt) and José Veiga (up202108753@fe.up.pt) for LDTS 2022/2023.
 
@@ -26,32 +26,20 @@ This project was developed by André Santos (up202108658@fe.up.pt), António Ram
 ### DESIGN![img.png](img.png)
 >>>>>>> Stashed changes
 
-- **MVC Architectural Pattern** In order to better organise the various different parts of our game, we have decided to use the MVC architectural pattern, 
+- **MVC Architectural Pattern** In order to better organise the various different parts of our game, we have decided to use the MVC architectural pattern. In both states, we have a model which holds the game/menu information, a controller which, as the name says, controls said information, and a viewer that draws such information.
 
-- **The Pattern.** Thus, the option we chose was to make 3 different classes. It was the best solution as now each type of Deck can have the most time/space efficient methods. A Structure like implementation was considered, although there was not a significant enough amount of similar methods to be worth consider an interface.
+- **State Pattern** To switch up between the menu and the game itself, we have decided to ue a State Pattern, in which the controllers and viewers to be ran are chosen depending on which model we are currently using.
 
-- **Implementation.** As stated before, we're going to have a different class for each type of deck. These will then be linked to the main loop through the class DeckHandler, in which each Deck is created and the various methods are used to create the randomly ordered stacks of cards needed to play the game.
-
-> The following image shows the classes' relations and the general implementation logic of the game.
 
 ![png](images/uml.png)
 
-These classes can be found here:
 
-- [Application](src/main/java/com/l08gr05/uno/Application.java)
-- [Card](src/main/java/com/l08gr05/uno/cards/Card.java)
-- [PlayedDeck](src/main/java/com/l08gr05/uno/decks_cards/PlayedDeck.java)
-- [PlayerDeck](src/main/java/com/l08gr05/uno/decks_cards/PlayerDeck.java)
-- [StackDeck](src/main/java/com/l08gr05/uno/decks_cards/StackDeck.java)
-- [com.l08gr05.uno.controller.DecksHandler](src/main/java/com/l08gr05/uno/gamelogic/com.l08gr05.uno.controller.DecksHandler.java)
-- [com.l08gr05.uno.Application](src/main/java/com/l08gr05/uno/gamelogic/com.l08gr05.uno.Application.java)
-- [LanternaBasics](src/main/java/com/l08gr05/uno/gui/LanternaBasics.java)
-- [CardViewer](src/main/java/com/l08gr05/uno/viewer/CardViewer.java)
-- [Position](src/main/java/com/l08gr05/uno/viewer/Position.java)
 
 #### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
-> The main smell we could notice was when it comes to the main game loop. We are worried we're doing too much GUI in there and in the near future we'll be moving that part into newer classes, as we can see in the UML. For example, we plan to correlate a class such as Card Viewer and have it be called an object in DeckHandler, where all the card decks that must be shown will be located.
+> The main smell we encountered was the overuse of ifs in the viewer. We also have the duplicate code smell throughot different classes and there are classes which are overcrowded with attributes, mainly the GUI class.
+
+>In terms of the refactoring that has been done, we have switched the Architectural Pattern to the MVC completely, thus cleaning up the code a lot. We have also implemented various different classes in the controller to facilitate the smooth running of the game rules and we have removed every single logic step that was present in the game model.
 
 
 ### TESTING
