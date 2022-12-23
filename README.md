@@ -14,24 +14,15 @@ This project was developed by André Santos (up202108658@fe.up.pt), António Ram
 
 **Tests** - There are some tests implemented to check the quality of the code.
 
-### PLANNED FEATURES
-
-> Our planned features are essentially to get the game to its full form. These include:
-- The ability to play the Cards.
-- The CPU logic and the visuals to go alongside it.
-- Create a main menu where one is able to create a new game and change some basic settings like the sound, the game mode or see the rules.
-
 <<<<<<< Updated upstream
 =======
-### DESIGN![img.png](img.png)
+### DESIGN![images/uml.png](uml.png)
 >>>>>>> Stashed changes
 
 - **MVC Architectural Pattern** In order to better organise the various different parts of our game, we have decided to use the MVC architectural pattern. In both states, we have a model which holds the game/menu information, a controller which, as the name says, controls said information, and a viewer that draws such information.
 
 - **State Pattern** To switch up between the menu and the game itself, we have decided to ue a State Pattern, in which the controllers and viewers to be ran are chosen depending on which model we are currently using.
 
-
-![png](images/uml.png)
 
 
 
