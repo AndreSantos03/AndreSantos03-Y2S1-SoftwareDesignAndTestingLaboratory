@@ -5,12 +5,24 @@ import com.l08gr05.uno.state.GameState;
 import com.l08gr05.uno.state.MenuState;
 import com.l08gr05.uno.state.State;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+
 public class Application {
 
     private GUI gui;
     private State state;
+    private Clip clipAudio;
 
     public Application() throws Exception {
+        AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResourceAsStream("cbat.wav"));
+        clipAudio = AudioSystem.getClip();
+        clipAudio.open(audio);
+        clipAudio.loop(clipAudio.LOOP_CONTINUOUSLY);
+        FloatControl gainControl = (FloatControl) clipAudio.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-15F);
         this.gui = new GUI();
         this.state = new MenuState(new Menu());
     }
@@ -23,7 +35,8 @@ public class Application {
         this.state = state;
     }
 
-    private void start() throws Exception {
+    private void start() {
+        clipAudio.start();
         try {
             while (this.state != null) {
                 state.step(this,gui);
