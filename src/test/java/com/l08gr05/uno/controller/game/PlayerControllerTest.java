@@ -25,35 +25,77 @@ public class PlayerControllerTest {
     public void setUp() throws Exception {
         game = Mockito.mock(Game.class);
         application = Mockito.mock(Application.class);
+        pressedKeys = new HashSet<Integer>();
 
         Card yellowTwo = new Card("yellow", "02", 1);
         Card redBlock = new Card("red", "10", 1);
-        Card plusFour = new Card("dark", "14", 1);
+        Card plusFour = new Card("red", "07", 1);
 
+        // Stubs for the decks
         Deck stubPlayerDeck = new Deck(Arrays.asList(yellowTwo, redBlock, plusFour));
+        Deck stubStackDeck = new Deck(Arrays.asList(redBlock, yellowTwo));
+        Deck stubCpuDeck = new Deck(Arrays.asList(plusFour));
         Mockito.when(game.get_playerDeck()).thenReturn(stubPlayerDeck);
-        Deck stubPlayedDeck = new Deck(Arrays.asList(yellowTwo));
-        Mockito.when(game.get_playedDeck()).thenReturn(stubPlayedDeck);
-
-        pressedKeys = new HashSet<Integer>();
-        playerController = new PlayerController(game);
+        Mockito.when(game.get_stackDeck()).thenReturn(stubStackDeck);
+        Mockito.when(game.get_cpuDeck()).thenReturn(stubCpuDeck);
     }
 
     @Test
-    public void selectNextCard() {
-        // Verifica que, inicialmente, a primeira carta está selecionada, mas que clicando na seta para a direita, passa a ser a segunda carta
+    public void cardSelection() {
+        // This piece of code is here instead of in setUp() because we need to call the playerController constructor after
+        // creating the playedDeck stub, and the playedDeck will be different in other tests
+        Card yellowThree = new Card("yellow", "03", 1);
+        Deck stubPlayedDeck = new Deck(Arrays.asList(yellowThree));
+        Mockito.when(game.get_playedDeck()).thenReturn(stubPlayedDeck);
+
+        playerController = new PlayerController(game);
+
+        // Verifies that, initially, the first card is selected, but clicking in the right arrow key, the second one is selected
         assertTrue(game.get_playerDeck().get(0).get_isSelected());
         pressedKeys.add(KeyEvent.VK_RIGHT);
         playerController.step(application, pressedKeys);
+        pressedKeys.remove(KeyEvent.VK_RIGHT);
         assertTrue(game.get_playerDeck().get(1).get_isSelected());
 
-        // Verifica que estando na ultima carta (neste caso a terceira), se continuarmos a clicar (10 vezes) para a direita, a ultima carta continua a estar selecionada
+        // Verifies that if the last card is selected (the third one in this case), se we continue to press the right arrow key (10 times)
+        // the last card is still selected
         for (int i = 0; i < 10; i++)
             pressedKeys.add(KeyEvent.VK_RIGHT);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) {
             playerController.step(application, pressedKeys);
+            pressedKeys.remove(KeyEvent.VK_RIGHT);
+        }
         assertTrue(game.get_playerDeck().get(2).get_isSelected());
+
+        // Verifies that clicking the left arrow selects the previous card
+        pressedKeys.add(KeyEvent.VK_LEFT);
+        playerController.step(application, pressedKeys);
+        pressedKeys.remove(KeyEvent.VK_LEFT);
+        assertTrue(game.get_playerDeck().get(1).get_isSelected());
+
+        // Gets back to the beginning and verifies the first one is selected after the key being pressed 10 times
+        for (int i = 0; i < 15; i++)
+            pressedKeys.add(KeyEvent.VK_LEFT);
+        for (int i = 0; i < 15; i++) {
+            playerController.step(application, pressedKeys);
+            pressedKeys.remove(KeyEvent.VK_LEFT);
+        }
+        assertTrue(game.get_playerDeck().get(0).get_isSelected());
     }
 
+    // None of the cards in player deck are playable
+    @Test
+    public void cardSelectionWhenNoneIsPlayable() {
+        Card yellowThree = new Card("green", "08", 1);
+        Deck stubPlayedDeck = new Deck(Arrays.asList(yellowThree));
+        Mockito.when(game.get_playedDeck()).thenReturn(stubPlayedDeck);
 
+        playerController = new PlayerController(game);
+
+        // Verifies if the first one keeps selected
+        assertTrue(game.get_playerDeck().get(0).get_isSelected());
+        pressedKeys.add(KeyEvent.VK_RIGHT);
+        playerController.step(application, pressedKeys);
+        assertTrue(game.get_playerDeck().get(0).get_isSelected());
+    }
 }
