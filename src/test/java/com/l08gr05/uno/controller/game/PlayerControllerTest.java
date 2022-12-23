@@ -23,13 +23,14 @@ public class PlayerControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
+        Card.setWidthHeight(10, 10);
         game = Mockito.mock(Game.class);
         application = Mockito.mock(Application.class);
         pressedKeys = new HashSet<Integer>();
 
-        Card yellowTwo = new Card("yellow", "02", 1);
-        Card redBlock = new Card("red", "10", 1);
-        Card plusFour = new Card("red", "07", 1);
+        Card yellowTwo = new Card("yellow", "02");
+        Card redBlock = new Card("red", "10");
+        Card plusFour = new Card("red", "07");
 
         // Stubs for the decks
         Deck stubPlayerDeck = new Deck(Arrays.asList(yellowTwo, redBlock, plusFour));
@@ -41,10 +42,10 @@ public class PlayerControllerTest {
     }
 
     @Test
-    public void cardSelection() {
+    public void cardSelection() throws IOException {
         // This piece of code is here instead of in setUp() because we need to call the playerController constructor after
         // creating the playedDeck stub, and the playedDeck will be different in other tests
-        Card yellowThree = new Card("yellow", "03", 1);
+        Card yellowThree = new Card("yellow", "03");
         Deck stubPlayedDeck = new Deck(Arrays.asList(yellowThree));
         Mockito.when(game.get_playedDeck()).thenReturn(stubPlayedDeck);
 
@@ -85,8 +86,8 @@ public class PlayerControllerTest {
 
     // None of the cards in player deck are playable
     @Test
-    public void cardSelectionWhenNoneIsPlayable() {
-        Card yellowThree = new Card("green", "08", 1);
+    public void cardSelectionWhenNoneIsPlayable() throws IOException {
+        Card yellowThree = new Card("green", "08");
         Deck stubPlayedDeck = new Deck(Arrays.asList(yellowThree));
         Mockito.when(game.get_playedDeck()).thenReturn(stubPlayedDeck);
 
