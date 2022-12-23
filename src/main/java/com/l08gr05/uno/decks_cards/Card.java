@@ -29,6 +29,14 @@ public class Card{
         isSelected = false;
    }
 
+   // Used to test the controller, ignores card height and width
+   public Card(String color, String type, int i) {
+       this.color = color;
+       this.type = type;
+       String resName = "/Cards/" + type + color.charAt(0) + ".png";
+       isSelected = false;
+   }
+
     private BufferedImage scaleImage(BufferedImage src, int w,int h) {
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         int ww = src.getWidth();
