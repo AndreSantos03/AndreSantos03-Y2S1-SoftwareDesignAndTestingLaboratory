@@ -60,7 +60,7 @@ public class PlayerController extends GameController{
                     indexSelected = 0;
                     setSelectStatus(indexSelected,true);
                 }
-                if(canCardBePlayed()){
+               if(canCardBePlayed()){
                     if (pressedKeys.contains(KeyEvent.VK_RIGHT) && indexSelected != getModel().get_playerDeck().size() - 1) {
                         setSelectStatus(indexSelected, false);
                         indexSelected++;

@@ -22,12 +22,11 @@ This project was developed by André Santos (up202108658@fe.up.pt), António Ram
 - Create a main menu where one is able to create a new game and change some basic settings like the sound, the game mode or see the rules.
 
 <<<<<<< Updated upstream
-### DESIGN PROBLEMS
 =======
 ### DESIGN![img.png](img.png)
 >>>>>>> Stashed changes
 
-- **Problem in Context.** We have 3 different types of Decks. The Stack Deck is a stack that's shuffled and where all the cards are drawn from. The second one is the Player Cards Deck and lastly we have the Played Deck which is a queue with all the played cards. We intended to make a superclass with some main methods and attributes that are then extended to each of the subclasses of Decks. However, each type of Deck has different variables and methods. For example, the Stack deck is a stack, as we are only interested in picking the top card. That is not the case with the Player Deck, where a List is optimal.
+- **MVC Architectural Pattern** In order to better organise the various different parts of our game, we have decided to use the MVC architectural pattern, 
 
 - **The Pattern.** Thus, the option we chose was to make 3 different classes. It was the best solution as now each type of Deck can have the most time/space efficient methods. A Structure like implementation was considered, although there was not a significant enough amount of similar methods to be worth consider an interface.
 

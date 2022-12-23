@@ -23,6 +23,27 @@ public class CPUController extends GameController {
         colorChooserController = new ColorChooserController(game);
     }
 
+/*
+    Card Rating System:
+            1 - Special Card/Same Color Stop or Reverse
+        2 - Draw 2 Same Color
+        3 - Card Same Color different Number
+        4- Stop or Reverse Different
+        5- Draw 2 Different Color
+        6 - Same number Different Color
+        7 - Draw 4
+            8 - Color Changer
+    If opponent has 1 card then:
+            1 - Special Card/Same Color Stop or Reverse
+        2 - Draw 2 Same Color
+        3 - Draw 4
+            4- Stop or Reverse Different
+        5- Draw 2 Different Color
+        6- Card Same Color different Number
+        7- Same number Different Color
+        8- Color Changer
+*/
+
     private Card getNextCard() {
         int min = 55; //random value doesn't matter
         Card playableCard = null;
