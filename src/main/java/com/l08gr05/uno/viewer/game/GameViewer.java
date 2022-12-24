@@ -69,27 +69,13 @@ public class GameViewer extends Viewer<Game> {
     private void drawCPU(GUI gui) throws IOException {
         int size = getModel().get_cpuDeck().size();
         int x = gui.get_terminalWidth() / 12;
-        int y = gui.get_terminalHeight() * 1/8;
+        int y = gui.get_terminalHeight()/8;
         int xInc = gui.get_terminalWidth() * 10 / 12 / size;
         for(int i = 1; i <= size;i++){
             gui.drawImage(x,y,Card.getBackImage());
             x += xInc;
         }
     }
-
-/*    private void drawCPU(GUI gui) throws IOException {
-        List<Card> deckList = getModel().get_cpuDeck().get_deckList();
-        int x = gui.get_terminalWidth() / 12;
-        int y = gui.get_terminalHeight() * 1 / 8;
-        int xInc = gui.get_terminalWidth() * 10 / 12 / deckList.size();
-        for (Card card : deckList) {
-            if (card.get_isSelected()) {
-                gui.drawHighlight(x, y, Card.getWidth(), Card.getHeight());
-            }
-            gui.drawImage(x, y, card.get_image());
-            x += xInc;
-        }
-    }*/
     private void drawColorChooser(GUI gui){
         int increment = (gui.get_terminalWidth() - gui.get_terminalWidth() / 5) / 4;
         gui.drawSquare(gui.get_terminalWidth()/5 - gui.get_cardHeight() / 2, gui.get_terminalHeight()*3/5, gui.get_cardHeight(), "red");

@@ -1,10 +1,6 @@
 package com.l08gr05.uno.controller;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
-
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Set;
 

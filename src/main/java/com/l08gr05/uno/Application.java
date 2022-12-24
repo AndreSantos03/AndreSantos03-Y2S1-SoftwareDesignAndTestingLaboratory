@@ -1,10 +1,7 @@
 package com.l08gr05.uno;
-import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.Game.Menu;
-import com.l08gr05.uno.state.GameState;
 import com.l08gr05.uno.state.MenuState;
 import com.l08gr05.uno.state.State;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -12,9 +9,9 @@ import javax.sound.sampled.FloatControl;
 
 public class Application {
 
-    private GUI gui;
+    private final GUI gui;
     private State state;
-    private Clip clipAudio;
+    private final Clip clipAudio;
 
     public Application() throws Exception {
         AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResourceAsStream("cbat.wav"));

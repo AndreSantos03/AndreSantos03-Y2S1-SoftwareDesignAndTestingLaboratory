@@ -1,8 +1,5 @@
 package com.l08gr05.uno.controller.game;
 
-
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.l08gr05.uno.Application;
 import com.l08gr05.uno.Game.Game;
 import com.l08gr05.uno.decks_cards.Card;
@@ -12,10 +9,9 @@ import java.util.Set;
 
 public class PlayerController extends GameController{
     private int indexSelected;
-    private DrawController drawController;
-    private PlayedCardController playedCardController;
-    private ColorChooserController colorChooserController;
-    private Boolean colorChooser;
+    private final DrawController drawController;
+    private final PlayedCardController playedCardController;
+    private final ColorChooserController colorChooserController;
     public PlayerController(Game game){
         super(game);
         drawController = new DrawController(game);

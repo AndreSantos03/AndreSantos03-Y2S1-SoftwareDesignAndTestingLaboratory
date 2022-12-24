@@ -21,13 +21,7 @@ public class Menu {
             currentEntry = this.entries.size() -1;
     }
 
-    public String getEntry(int i) {return entries.get(i);}
-
     public boolean isSelected(int i) {return currentEntry == i;}
 
     public boolean isSelectedJogar() {return isSelected(0);}
-
-    public boolean isSelectedSair() {return isSelected(1);}
-
-    public int getNumberEntries() {return entries.size();}
 }

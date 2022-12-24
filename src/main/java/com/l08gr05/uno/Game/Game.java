@@ -6,10 +6,10 @@ import com.l08gr05.uno.decks_cards.StackDeck;
 import java.io.IOException;
 
 public class Game {
-    private Deck stackDeck;
-    private Deck playedDeck;
-    private Deck playerDeck;
-    private Deck cpuDeck;
+    private final Deck stackDeck;
+    private final Deck playedDeck;
+    private final Deck playerDeck;
+    private final Deck cpuDeck;
     private String color;
     private boolean colorChooser;
     private int indexColorChooser;

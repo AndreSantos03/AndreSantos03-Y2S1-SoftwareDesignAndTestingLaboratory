@@ -28,9 +28,7 @@ public class Deck {
             deckList.add(0,card);
         }
     }
-    public Card remove(int index){
-        return deckList.remove(index);
-    }
+
     public void remove(Card card){
         deckList.remove(card);
     }

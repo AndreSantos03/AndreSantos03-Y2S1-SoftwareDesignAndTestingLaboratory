@@ -13,9 +13,9 @@ import java.util.Set;
 
 
 public class CPUController extends GameController {
-    private DrawController drawController;
-    private PlayedCardController playedCardController;
-    private ColorChooserController colorChooserController;
+    private final DrawController drawController;
+    private final PlayedCardController playedCardController;
+    private final ColorChooserController colorChooserController;
     public CPUController(Game game){
         super(game);
         drawController = new DrawController(game);

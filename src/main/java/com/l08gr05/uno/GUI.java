@@ -2,7 +2,6 @@ package com.l08gr05.uno;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -10,9 +9,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l08gr05.uno.decks_cards.Card;
-
-import javax.imageio.ImageIO;
-import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -20,7 +16,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,9 +26,8 @@ public class GUI {
     private static int terminalHeight;
     private Screen screen;
     private TextGraphics tg;
-    private Set<Integer> pressedKeys;
-    private boolean run = true;
-    private int fontSize = 3;
+    private final Set<Integer> pressedKeys;
+    private final int fontSize = 3;
     private int cardWidth;
     private int cardHeight;
 
@@ -54,10 +48,10 @@ public class GUI {
     private void setDimensions() throws IOException {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         terminalHeight = (int)screenSize.getHeight() / fontSize;
-        terminalWidth = (int)terminalHeight*16/9;
+        terminalWidth = terminalHeight*16/9;
 
         cardWidth = terminalWidth/14;
-        cardHeight = (int) (0.6684 * cardWidth); //to mantain proportions
+        cardHeight = (int) (0.6684 * cardWidth); //to maintain proportions
         Card.setWidthHeight(cardWidth,cardHeight);
     }
 
@@ -86,12 +80,6 @@ public class GUI {
         setScreen();
     }
 
-    public boolean get_run() {
-        return run;
-    }
-    public void set_run(boolean run){
-        this.run = run;
-    }
     public void refresh() throws IOException {
         screen.refresh();
     }
@@ -196,10 +184,6 @@ public class GUI {
     public static int getTerminalWidth(){
         return terminalWidth;
     }
-    public static int getTerminalHeight(){
-        return terminalHeight;
-    }
-    public int get_cardHeight(){return cardHeight;}
-    public int get_cardWidth(){return cardWidth;}
 
+    public int get_cardHeight(){return cardHeight;}
 }

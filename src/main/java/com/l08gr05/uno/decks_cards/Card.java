@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class Card{
 
-    private String type;
-    private String color;
+    private final String type;
+    private final String color;
     private BufferedImage image;
     private Boolean isSelected;
     private static int cardHeight;
@@ -66,11 +66,11 @@ public class Card{
    }
     public String get_type(){
         return this.type;
-    };
+    }
 
     public String get_color(){
         return this.color;
-    };
+    }
 
     public Boolean isNumber(){
         return Arrays.asList("00","01","02","03","04","05","06","07","08","09").contains(type);
