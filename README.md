@@ -40,7 +40,7 @@ Main Menu
 
 > One of the things we did wrong in the game was using Buffered Images instead of personalizing a font. This led to be very difficult to implement tests and also made the game a bit slow.
 
->In terms of the refactoring that has been done, we have switched the Architectural Pattern to the MVC completely, thus cleaning up the code a lot. We have also implemented different classes in the controller to facilitate the smooth running of the game rules and we have removed every single logic step that was present in the game model.
+>In terms of the refactoring that has been done, we have switched the Architectural Pattern to the MVC completely, thus cleaning up the code. We have also implemented different classes in the controller to facilitate the smooth running of the game rules, and removed every single logic step that was present in the game model.
 
 
 ### TESTING
