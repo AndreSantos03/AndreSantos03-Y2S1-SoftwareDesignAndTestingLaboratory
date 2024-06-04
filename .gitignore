@@ -1,0 +1,11 @@
+<<<<<<< Updated upstream
+.gradle/
+.idea/
+build/
+gradle/
+gradlew.bat
+gradlew
+=======
+
+*.xml
+>>>>>>> Stashed changes
